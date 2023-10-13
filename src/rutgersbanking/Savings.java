@@ -2,8 +2,14 @@ package rutgersbanking;
 
 public class Savings extends Account {
     protected boolean isLoyal;
+
     private static final double INTEREST_RATE = 0.04;
     private static final int FEE = 25;
+    private static final int MIN_AGE = 16;
+    private static boolean applyFee = true; // Boolean to check if monthly fee is waived
+    private static final double  LOYAL_INTEREST_RATE = 0.0425; // Interest rate for loyal customers
+
+
 
     /**
      * Constructor to initialize the instance variable.
@@ -33,6 +39,37 @@ public class Savings extends Account {
      */
     public double monthlyInterest(){
         return INTEREST_RATE;
+    }
+
+    @Override
+    public boolean checkAge() {
+        if(holder.age() >= MIN_AGE){
+            return true;
+        }
+        return false;
+    }
+
+//    @Override
+//    public boolean checkBalance() {
+//        if (balance >= 500){
+//            applyFee = false; // Monthly fee waived
+//        }
+//
+//        if (balance <= 0){
+//            return false;
+//        }
+//
+//        return true;
+//    }
+
+
+    @Override
+    public boolean balanceIsValid() {
+        if (balance <= 0){
+            return false;
+        }
+
+        return true;
     }
 
     public int compareTo(Account compareSavings){
