@@ -9,12 +9,12 @@ public abstract class Account implements Comparable <Account>{
      * @param holder Profile information of the account holder.
      * @param balance Balance in the account.
      */
-    public Account(Profile holder, double balance){
+    public Account(Profile holder, double balance) {
         this.holder = holder;
         this.balance = balance;
     }
 
-    public Account(){
+    public Account() {
 
     }
 
@@ -28,10 +28,10 @@ public abstract class Account implements Comparable <Account>{
      */
     public abstract double monthlyInterest();
 
-    public double getBalance(){
+    public double getBalance() {
         return balance;
     }
-    public Profile getHolder(){
+    public Profile getHolder() {
         return holder;
     }
 

@@ -11,7 +11,7 @@ public enum Campus {
         this.CODE = code;
     }
 
-    public int getCode(){
+    public int getCode() {
         return CODE;
     }
 
