@@ -28,6 +28,10 @@ public abstract class Account implements Comparable <Account>{
      */
     public abstract double monthlyInterest();
 
+    public abstract boolean checkAge();
+
+    public abstract boolean balanceIsValid();
+
     public double getBalance() {
         return balance;
     }

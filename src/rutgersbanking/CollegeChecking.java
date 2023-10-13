@@ -3,7 +3,9 @@ package rutgersbanking;
 public class CollegeChecking extends Checking {
     private Campus campus;
     private static final double INTEREST_RATE = 0.01;
-    private static final int FEE = 12;
+    private static final int FEE = 0; // No monthly fee for CollegeChecking
+    private static final int MIN_AGE = 16;
+    private static final int MAX_AGE = 24;
 
     /**
      * Constructor to initialize the instance variable.
@@ -35,6 +37,24 @@ public class CollegeChecking extends Checking {
      */
     public int getCampusCode() {
         return campus.getCode();
+    }
+
+    @Override
+    public boolean checkAge() {
+        if (holder.age() >= MIN_AGE && holder.age() <= MAX_AGE){
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public boolean balanceIsValid() {
+        if (balance <= 0){
+            return false;
+        }
+
+        return true;
     }
 
     public int compareTo(Checking compareCollegeChecking){

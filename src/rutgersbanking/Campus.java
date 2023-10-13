@@ -1,9 +1,9 @@
 package rutgersbanking;
 
 public enum Campus {
-    NewBrunswick(0),
-    Newark(1),
-    Camden(2);
+    NEW_BRUNSWICK(0),
+    NEWARK(1),
+    CAMDEN(2);
 
     private final int CODE;
 
@@ -14,5 +14,6 @@ public enum Campus {
     public int getCode() {
         return CODE;
     }
+
 
 }

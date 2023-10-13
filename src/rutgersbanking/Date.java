@@ -445,4 +445,28 @@ public class Date implements Comparable<Date>{
         System.out.println("Failed.");
         return false;
     }
+
+    /**
+     * Getter for the year instance variable.
+     * @return the year in the date.
+     */
+    public int getYear(){
+        return year;
+    }
+
+    /**
+     * Getter for the month instance variable.
+     * @return the month in the date.
+     */
+    public int getMonth(){
+        return month;
+    }
+
+    /**
+     * Getter for the day instance variable.
+     * @return the day in the date.
+     */
+    public int getDay(){
+        return day;
+    }
 }

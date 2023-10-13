@@ -1,11 +1,12 @@
 package rutgersbanking;
+import java.util.Calendar;
 
 public class Profile implements Comparable<Profile> {
     private String fname;
     private String lname;
     private Date dob;
 
-    private final int NOT_EQUAL = -2;
+    private final int NOT_EQUAL = -2; // for the compareTo method; -2 output means profiles are not equal
     public Profile(String fname, String lname, Date dob){
         this.fname = fname;
         this.lname = lname;
@@ -29,6 +30,23 @@ public class Profile implements Comparable<Profile> {
         }
 
         return NOT_EQUAL;
+    }
+
+    /**
+     * Determine if the profile holder is within the required age to open/hold an account
+     * @return age of the account holder
+     */
+    public int age(){
+        Calendar currentDate = Calendar.getInstance();
+        int age = currentDate.get(Calendar.YEAR) - dob.getYear();
+
+        // Check if the birthday has already passed this year
+        if (currentDate.get(Calendar.MONTH) < dob.getMonth() || (currentDate.get(Calendar.MONTH) == dob.getMonth() &&
+                currentDate.get(Calendar.DAY_OF_MONTH) < dob.getDay())) {
+            age--;
+        }
+
+        return age;
     }
 
     public String getFname(){
