@@ -8,7 +8,7 @@ public class Checking extends Account{
      * Provides the monthly fee associated with the account.
      * @return the monthly fee.
      */
-    public double monthlyFee(){
+    public double monthlyFee() {
         return FEE;
     }
 
@@ -16,12 +16,12 @@ public class Checking extends Account{
      * Provides the monthly interest rate associated with the account.
      * @return the monthly interest rate.
      */
-    public double monthlyInterest(){
+    public double monthlyInterest() {
         return INTEREST_RATE;
     }
 
     @Override
-    public int compareTo(Account compareChecking){
+    public int compareTo(Account compareChecking) {
         return -1;
     }
 

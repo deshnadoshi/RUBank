@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Transfer Date.java over from CalendarEvent, grow() method in AccountDatabase.java. Set-up remaining classes.">
-      <change afterPath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +45,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;deshna__local&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "local__haejin"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Profile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="rutgersbanking.Profile" />

@@ -9,7 +9,7 @@ public class CollegeChecking extends Checking {
      * Constructor to initialize the instance variable.
      * @param campus Campus associated with the College Checking account.
      */
-    public CollegeChecking(Campus campus){
+    public CollegeChecking(Campus campus) {
         this.campus = campus;
     }
 
@@ -17,7 +17,7 @@ public class CollegeChecking extends Checking {
      * Provides the monthly fee associated with the account.
      * @return the monthly fee.
      */
-    public double monthlyFee(){
+    public double monthlyFee() {
         return FEE;
     }
 
@@ -25,7 +25,7 @@ public class CollegeChecking extends Checking {
      * Provides the monthly interest rate associated with the account.
      * @return the monthly interest rate.
      */
-    public double monthlyInterest(){
+    public double monthlyInterest() {
         return INTEREST_RATE;
     }
 
@@ -33,7 +33,7 @@ public class CollegeChecking extends Checking {
      * Provides the campus code associated with the account.
      * @return the campus code (0, 1, 2, representing NB, Newark, Camden respectively).
      */
-    public int getCampusCode(){
+    public int getCampusCode() {
         return campus.getCode();
     }
 
