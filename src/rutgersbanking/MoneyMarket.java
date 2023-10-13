@@ -46,22 +46,6 @@ public class MoneyMarket extends Savings {
         return false;
     }
 
-//    @Override
-//    public boolean checkBalance() {
-//        if (balance >= 2000){
-//            applyFee = false; // Monthly fee waived
-//            isLoyal = true; // Set loyal status
-//        } else {
-//            isLoyal = false; // Remove loyal status
-//        }
-//
-//        if (balance <= 0){
-//            return false;
-//        }
-//
-//        return true;
-//    }
-
 
     public boolean balanceIsValid(boolean openingAccount) {
         if (openingAccount){ // Checking if this is the first time an account is being opened

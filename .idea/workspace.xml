@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Transfer Date.java over from CalendarEvent, grow() method in AccountDatabase.java. Set-up remaining classes.">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Updating requirements for each account type.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
@@ -99,12 +96,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696270456202</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updating requirements for each account type.">
+      <option name="closed" value="true" />
+      <created>1697216893369</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697216893369</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RUBank Set-up" />
     <MESSAGE value="Transfer Date.java over from CalendarEvent, grow() method in AccountDatabase.java. Set-up remaining classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Transfer Date.java over from CalendarEvent, grow() method in AccountDatabase.java. Set-up remaining classes." />
+    <MESSAGE value="Updating requirements for each account type." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating requirements for each account type." />
   </component>
 </project>

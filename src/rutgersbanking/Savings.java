@@ -49,19 +49,6 @@ public class Savings extends Account {
         return false;
     }
 
-//    @Override
-//    public boolean checkBalance() {
-//        if (balance >= 500){
-//            applyFee = false; // Monthly fee waived
-//        }
-//
-//        if (balance <= 0){
-//            return false;
-//        }
-//
-//        return true;
-//    }
-
 
     @Override
     public boolean balanceIsValid() {
