@@ -48,7 +48,6 @@ public class TransactionManager {
                 if (parsedCommand[counter].equals("O")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
                         // open account
-                        // it's not parased commad.length
                     }
                 } else if (parsedCommand[counter].equals("C")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
