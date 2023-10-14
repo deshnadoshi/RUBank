@@ -30,15 +30,6 @@ public class Checking extends Account{
         return false;
     }
 
-//    @Override
-//    public boolean checkBalance() {
-//        if (balance >= 1000){
-//            applyFee = false;
-//            return true;
-//        }
-//        return false;
-//    }
-
     @Override
     public boolean balanceIsValid() {
         if (balance <= 0){
