@@ -6,6 +6,10 @@ public class Checking extends Account{
     private static final int MIN_AGE = 16;
     private static boolean applyFee = true; // Boolean to check if monthly fee is waived
 
+    public Checking(Profile holder, double balance) {
+        super(holder, balance);
+    }
+
     /**
      * Provides the monthly fee associated with the account.
      * @return the monthly fee.
@@ -24,7 +28,7 @@ public class Checking extends Account{
 
     @Override
     public boolean checkAge() {
-        if(holder.age() >= MIN_AGE){
+        if (holder.age() >= MIN_AGE){
             return true;
         }
         return false;

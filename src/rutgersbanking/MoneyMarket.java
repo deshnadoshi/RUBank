@@ -14,7 +14,8 @@ public class MoneyMarket extends Savings {
      * Constructor to initialize the instance variable.
      * @param withdrawal Number of withdrawals.
      */
-    public MoneyMarket(int withdrawal){
+    public MoneyMarket(Profile holder, double balance, boolean isLoyal, int withdrawal) {
+        super(holder, balance, true);
         this.withdrawal = withdrawal;
     }
 
@@ -40,7 +41,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public boolean checkAge() {
-        if(holder.age() >= MIN_AGE){
+        if (holder.age() >= MIN_AGE){
             return true;
         }
         return false;
@@ -48,20 +49,20 @@ public class MoneyMarket extends Savings {
 
 
     public boolean balanceIsValid(boolean openingAccount) {
-        if (openingAccount){ // Checking if this is the first time an account is being opened
+        if (openingAccount) { // Checking if this is the first time an account is being opened
             if (balance >= 2000) {
                 return true;
             } else {
                 return false;
             }
-        } else if (balance <= 0){
+        } else if (balance <= 0) {
             return false;
         }
 
         return true;
     }
 
-    private void checkWithdrawal(){
+    private void checkWithdrawal() {
         if (withdrawal > 3){
             balance -= EXCEED_WITHDRAWAL_FEE;
         }

@@ -6,6 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Updates to TransactionManager.java, Invalid Command and Missing data checks; Methods in AccountDatabse (only sorting/printing left)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +50,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "deshna__local",
+    "git-widget-placeholder": "local__haejin",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>

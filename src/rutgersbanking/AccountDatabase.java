@@ -34,7 +34,7 @@ public class AccountDatabase {
     /**
      * Increases the size of the accounts array by 4.
      */
-    private void grow(){
+    private void grow() {
         Account [] growAccountsArray = new Account[accounts.length + GROWTH_CAPACITY];
         for (int i = 0; i < accounts.length; i++) {
             growAccountsArray[i] = accounts[i];
@@ -57,7 +57,7 @@ public class AccountDatabase {
      * @return true if the account is added, false if it is not added.
      */
     public boolean open(Account account) {
-        if (this.contains(account)){
+        if (!this.contains(account)) {
             if (this.numAcct >= this.accounts.length) {
                 this.grow();
             }
@@ -95,6 +95,7 @@ public class AccountDatabase {
      */
     public boolean withdraw(Account account) {
         int withdrawFromAccount = find(account);
+        if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
         if (account.getBalance() <= accounts[withdrawFromAccount].getBalance()){
