@@ -49,6 +49,13 @@ public class Profile implements Comparable<Profile> {
         return age;
     }
 
+    /**
+     *
+     * @return
+     */
+    public String toString(){
+        return fname + " " + lname + " " + dob.toString();
+    }
 
     /**
      * 

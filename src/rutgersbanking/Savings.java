@@ -1,5 +1,7 @@
 package rutgersbanking;
 
+import java.text.DecimalFormat;
+
 public class Savings extends Account {
     protected boolean isLoyal;
 
@@ -9,6 +11,7 @@ public class Savings extends Account {
     private static final double  LOYAL_INTEREST_RATE = 0.0425; // Interest rate for loyal customers
     private static final int MONTHS = 12;
     private static final int EQUAL_COMPARATOR = 0;
+    private static final int NOT_EQUAL = -2;
 
     /**
      * Constructor to initialize the instance variable.
@@ -103,7 +106,9 @@ public class Savings extends Account {
      */
     @Override
     public boolean equals(Object compareSavings){
-
+        if (getClass() != compareSavings.getClass()){
+            return false;
+        }
         Account savings = (Savings) compareSavings; // type cast to use in equals
 
         boolean fnameMatch = false;
@@ -125,7 +130,58 @@ public class Savings extends Account {
 
 
     @Override
-    public int compareTo(Account o) {
-        return 0;
+    public int compareTo(Account savings) {
+        int profileCompare = savings.getHolder().compareTo(holder);
+        boolean typeCompare = savings.getClass().equals(getClass());
+        // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
+
+        if (profileCompare == 0 && typeCompare){
+            return EQUAL_COMPARATOR;
+        }
+
+        return NOT_EQUAL; // if either profile is not the same or the type is not the same
+    }
+
+    @Override
+    public String toString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        String balanceFormat = currencyFormat.format(balance);
+
+        if (isLoyal){
+            return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal";
+        }
+
+        return "Savings::" + holder.toString() + "::Balance " + balanceFormat;
+    }
+
+    @Override
+    public String netBalanceToString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        updateBalance();
+        String balanceFormat = currencyFormat.format(balance);
+        String feeFormat = currencyFormat.format(calcFee());
+        String interestFormat = currencyFormat.format(calcInterest());
+
+        if (isLoyal){
+            return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal" + "::fee "
+                    + feeFormat + "::monthly interest " + interestFormat;
+        }
+        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::fee "
+                + feeFormat + "::monthly interest " + interestFormat;
+    }
+
+    // delete this later on (only for testing)
+    public static void main (String [] args){
+        Profile p = new Profile("h", "d", new Date(2003, 11, 4));
+        Account mm = new MoneyMarket(p, 1111, true, 0);
+        Account s = new Savings(p, 1123, true);
+        Account s2 = new Savings (p, 1123, true);
+        System.out.println(s.compareTo(mm)); // should not be equal, and they r not equal !!
+        // can use compareto for find() function
+
+        System.out.println(s.equals(mm)); // should be false because their classes don't match! yes ! false
+        // use equals for deposit finding and withdraw finding
+
+        System.out.println(s.equals(s2)); // should be true;  IT IS SLAY
     }
 }

@@ -1,4 +1,5 @@
 package rutgersbanking;
+import java.text.DecimalFormat;
 
 public class CollegeChecking extends Checking {
     private Campus campus;
@@ -52,10 +53,7 @@ public class CollegeChecking extends Checking {
 
     @Override
     public boolean balanceIsValid() {
-        if (balance <= 0){
-            return false;
-        }
-        return true;
+        return super.balanceIsValid();
     }
 
 
@@ -73,16 +71,24 @@ public class CollegeChecking extends Checking {
     public int calcFee() {
         return 0;
     }
-
-
-    /**
-     *
-     * @param compareCollegeChecking
-     * @return
-     */
     @Override
-    public boolean equals(Object compareCollegeChecking){
-        return super.equals(compareCollegeChecking);
+    public String toString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        String balanceFormat = currencyFormat.format(balance);
+
+        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::" + campus.toString();
+    }
+
+    @Override
+    public String netBalanceToString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        updateBalance();
+        String balanceFormat = currencyFormat.format(balance);
+        String feeFormat = currencyFormat.format(calcFee());
+        String interestFormat = currencyFormat.format(calcInterest());
+
+        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::" + campus.toString()
+                + "::fee " + feeFormat + "::monthly interest " + interestFormat;
     }
 
 }
