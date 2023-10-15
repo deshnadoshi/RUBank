@@ -15,7 +15,8 @@ public class Savings extends Account {
      * Constructor to initialize the instance variable.
      * @param isLoyal Customer loyalty metric.
      */
-    public Savings(boolean isLoyal){
+    public Savings(Profile holder, double balance, boolean isLoyal) {
+        super(holder, balance);
         this.isLoyal = isLoyal;
     }
 
@@ -24,6 +25,7 @@ public class Savings extends Account {
     public Savings(){
 
     }
+
 
     /**
      * Provides the monthly fee associated with the account.

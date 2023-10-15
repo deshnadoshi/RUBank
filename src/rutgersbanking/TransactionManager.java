@@ -7,7 +7,7 @@ public class TransactionManager {
     private static final int INITIAL_ARR_SIZE = 4;
     private static final int OPEN_ARGS_CC_S = 7; // Arguments expected to open a CC/S account
     private static final int OPEN_ARGS_C_MM = 6; // Arguments expected to open a C/MM account
-    private static final int CLOSE_ARGS= 5; // Arguments expected to close an account
+    private static final int CLOSE_ARGS = 5; // Arguments expected to close an account
 
     private static final int ACCT_TYPE_INDEX = 1; // Account type index in the parsed command
 
@@ -42,16 +42,17 @@ public class TransactionManager {
 
     private boolean commandParser(String command, AccountDatabase database) {
         String[] parsedCommand = command.split("\\s+");
+        System.out.println(parsedCommand.length); // test
         int counter = 0;
         while (counter < parsedCommand.length) {
             if (checkValid(parsedCommand[counter])) {
                 if (parsedCommand[counter].equals("O")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
-                        // open account
+                        database.open(makeAccount(parsedCommand));
                     }
                 } else if (parsedCommand[counter].equals("C")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
-                        // close account
+                        database.close(makeAccount(parsedCommand));
                     }
                 } else if (parsedCommand[counter].equals("D")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
@@ -72,9 +73,40 @@ public class TransactionManager {
                 }
 
             }
-
             counter++; // delete this (just place holder to check if try-catch for invalid cmd was working)
         } return false;
+    }
+
+    private Account makeAccount(String[] commandArg) {
+        Account newAccount = null;
+        switch (commandArg[ACCT_TYPE_INDEX]) {
+            case "C" -> {
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                newAccount = new Checking(newProfile, Double.parseDouble(commandArg[5]));
+            }
+            case "CC" -> {
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                // BELOW LINE IS BROKEN.
+                newAccount = new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), Campus.valueOf(commandArg[6]));
+            }
+            case "S" -> {
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                newAccount = new Savings(newProfile, Double.parseDouble(commandArg[5]), Boolean.parseBoolean(commandArg[6]));
+            }
+            case "MM" -> {
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                newAccount = new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+            }
+        }
+        return newAccount;
     }
 
 
