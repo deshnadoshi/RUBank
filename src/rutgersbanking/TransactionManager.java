@@ -56,11 +56,11 @@ public class TransactionManager {
                     }
                 } else if (parsedCommand[counter].equals("D")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
-                        // deposit into account
+                        database.deposit(makeAccount(parsedCommand));
                     }
                 } else if (parsedCommand[counter].equals("W")) {
                     if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
-                        // withdraw from
+                        database.withdraw(makeAccount(parsedCommand));
                     }
                 } else if (parsedCommand[counter].equals("P")) {
                     // don't need to check if it has the correct # of args, the input doesn't have any invalid print commands
@@ -71,7 +71,6 @@ public class TransactionManager {
                 } else if (parsedCommand[counter].equals("Q")){
                     return true;
                 }
-
             }
             counter++; // delete this (just place holder to check if try-catch for invalid cmd was working)
         } return false;
