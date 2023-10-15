@@ -2,6 +2,7 @@ package rutgersbanking;
 
 public class CollegeChecking extends Checking {
     private Campus campus;
+
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 0; // No monthly fee for CollegeChecking
     private static final int MIN_AGE = 16;
@@ -54,11 +55,34 @@ public class CollegeChecking extends Checking {
         if (balance <= 0){
             return false;
         }
-
         return true;
     }
 
-    public int compareTo(Checking compareCollegeChecking){
-        return -1;
+
+    @Override
+    public void updateBalance() {
+        super.updateBalance();
     }
+
+    @Override
+    public double calcInterest() {
+        return super.calcInterest();
+    }
+
+    @Override
+    public int calcFee() {
+        return 0;
+    }
+
+
+    /**
+     *
+     * @param compareCollegeChecking
+     * @return
+     */
+    @Override
+    public boolean equals(Object compareCollegeChecking){
+        return super.equals(compareCollegeChecking);
+    }
+
 }

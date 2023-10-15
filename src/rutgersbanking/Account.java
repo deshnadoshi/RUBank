@@ -33,6 +33,10 @@ public abstract class Account implements Comparable <Account>{
     public abstract boolean balanceIsValid();
 
     // might need equals() as well (just a note)
+    public abstract void updateBalance();
+
+    public abstract double calcInterest();
+    public abstract int calcFee();
 
     public double getBalance() {
         return balance;

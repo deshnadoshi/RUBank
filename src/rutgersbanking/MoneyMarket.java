@@ -6,9 +6,9 @@ public class MoneyMarket extends Savings {
     private static final double INTEREST_RATE = 0.045;
     private static final int FEE = 25;
     private static final int MIN_AGE = 16;
-    private static boolean applyFee = true; // Boolean to check if monthly fee is waived
     private static final double  LOYAL_INTEREST_RATE = 0.0475; // Interest rate for loyal customers
     private static final int EXCEED_WITHDRAWAL_FEE = 10; // If the withdrawal > 3, then $10 fee is deducted.
+    private static final int EQUAL_COMPARATOR = 0;
 
     /**
      * Constructor to initialize the instance variable.
@@ -41,25 +41,14 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public boolean checkAge() {
-        if (holder.age() >= MIN_AGE){
-            return true;
-        }
-        return false;
+        return holder.age() >= MIN_AGE;
     }
 
 
     public boolean balanceIsValid(boolean openingAccount) {
         if (openingAccount) { // Checking if this is the first time an account is being opened
-            if (balance >= 2000) {
-                return true;
-            } else {
-                return false;
-            }
-        } else if (balance <= 0) {
-            return false;
-        }
-
-        return true;
+            return balance >= 2000;
+        } else return !(balance <= 0);
     }
 
     private void checkWithdrawal() {
@@ -68,9 +57,54 @@ public class MoneyMarket extends Savings {
         }
     }
 
-    public int compareTo(Savings compareMoneyMarket){
-        return -1;
+    @Override
+    public double calcInterest() {
+        return super.calcInterest();
     }
+
+    @Override
+    public int calcFee() {
+        return super.calcFee();
+    }
+
+    @Override
+    public boolean checkApplyFee(){
+        return !(balance >= 2000) || withdrawal > 3; // if the balance is more than 2000 and withdrawal <= 3 don't apply the fee
+    }
+
+    public boolean checkLoyalty(){
+        if (balance >= 2000){
+            isLoyal = true;
+            return true;
+        } else {
+            isLoyal = false;
+        }
+        return false;
+    }
+
+
+    @Override
+    public boolean equals(Object compareMoneyMarket){
+
+        Account moneymarket = (Savings) compareMoneyMarket; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (moneymarket.getHolder().getFname().equals(holder.getFname())){
+            fnameMatch = true;
+        }
+        if (moneymarket.getHolder().getLname().equals(holder.getLname())){
+            lnameMatch = true;
+        }
+        if (moneymarket.getHolder().getDOB().compareTo(holder.getDOB()) == EQUAL_COMPARATOR){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
 
 
 }

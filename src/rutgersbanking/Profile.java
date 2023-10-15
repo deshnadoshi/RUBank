@@ -50,14 +50,26 @@ public class Profile implements Comparable<Profile> {
     }
 
 
+    /**
+     * 
+     * @return
+     */
     public String getFname(){
         return fname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLname(){
         return lname;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDOB(){
         return dob;
     }
