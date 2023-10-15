@@ -148,7 +148,7 @@ public class MoneyMarket extends Savings {
             return "Money Market::Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal::withdrawal: " + withdrawal
                     + "::fee " + feeFormat + "::monthly interest " + interestFormat;
         }
-        return "Money Market::Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal::withdrawal: " + withdrawal
+        return "Money Market::Savings::" + holder.toString() + "::Balance " + balanceFormat + "::withdrawal: " + withdrawal
                 + "::fee " + feeFormat + "::monthly interest " + interestFormat;
     }
 
