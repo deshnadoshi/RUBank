@@ -1,7 +1,9 @@
 package rutgersbanking;
+import java.text.DecimalFormat;
 
 public class CollegeChecking extends Checking {
     private Campus campus;
+
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 0; // No monthly fee for CollegeChecking
     private static final int MIN_AGE = 16;
@@ -51,14 +53,42 @@ public class CollegeChecking extends Checking {
 
     @Override
     public boolean balanceIsValid() {
-        if (balance <= 0){
-            return false;
-        }
-
-        return true;
+        return super.balanceIsValid();
     }
 
-    public int compareTo(Checking compareCollegeChecking){
-        return -1;
+
+    @Override
+    public void updateBalance() {
+        super.updateBalance();
     }
+
+    @Override
+    public double calcInterest() {
+        return super.calcInterest();
+    }
+
+    @Override
+    public int calcFee() {
+        return 0;
+    }
+    @Override
+    public String toString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        String balanceFormat = currencyFormat.format(balance);
+
+        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::" + campus.toString();
+    }
+
+    @Override
+    public String netBalanceToString(){
+        DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
+        updateBalance();
+        String balanceFormat = currencyFormat.format(balance);
+        String feeFormat = currencyFormat.format(calcFee());
+        String interestFormat = currencyFormat.format(calcInterest());
+
+        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::" + campus.toString()
+                + "::fee " + feeFormat + "::monthly interest " + interestFormat;
+    }
+
 }

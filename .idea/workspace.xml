@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Updates to TransactionManager.java, Invalid Command and Missing data checks; Methods in AccountDatabse (only sorting/printing left)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" afterDir="false" />
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="toString() completed for all classes. equals() and compareTo() completed (need to be updated in AccountDatabase.java)">
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,17 +39,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "local__haejin",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;deshna__local&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.RunProject2">
-    <configuration name="Profile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="rutgersbanking.Profile" />
+}</component>
+  <component name="RunManager" selected="Application.Checking">
+    <configuration name="Checking" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rutgersbanking.Checking" />
+      <module name="RUBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rutgersbanking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CollegeChecking" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rutgersbanking.CollegeChecking" />
+      <module name="RUBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rutgersbanking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MoneyMarket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rutgersbanking.MoneyMarket" />
       <module name="RUBank" />
       <extension name="coverage">
         <pattern>
@@ -81,10 +100,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Savings" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rutgersbanking.Savings" />
+      <module name="RUBank" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rutgersbanking.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Checking" />
+        <item itemvalue="Application.MoneyMarket" />
+        <item itemvalue="Application.Savings" />
+        <item itemvalue="Application.CollegeChecking" />
         <item itemvalue="Application.RunProject2" />
-        <item itemvalue="Application.Profile" />
       </list>
     </recent_temporary>
   </component>
@@ -137,7 +172,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697292618107</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Methods to add fee and interest to the balance, to calculate fee/interest. equals() methods completed. Set-up for compareTo().">
+      <option name="closed" value="true" />
+      <created>1697339831711</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697339831711</updated>
+    </task>
+    <task id="LOCAL-00007" summary="toString() completed for all classes. equals() and compareTo() completed (need to be updated in AccountDatabase.java)">
+      <option name="closed" value="true" />
+      <created>1697375358319</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697375358319</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -145,6 +196,8 @@
     <MESSAGE value="Transfer Date.java over from CalendarEvent, grow() method in AccountDatabase.java. Set-up remaining classes." />
     <MESSAGE value="Updating requirements for each account type." />
     <MESSAGE value="Updates to TransactionManager.java, Invalid Command and Missing data checks; Methods in AccountDatabse (only sorting/printing left)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates to TransactionManager.java, Invalid Command and Missing data checks; Methods in AccountDatabse (only sorting/printing left)" />
+    <MESSAGE value="Methods to add fee and interest to the balance, to calculate fee/interest. equals() methods completed. Set-up for compareTo()." />
+    <MESSAGE value="toString() completed for all classes. equals() and compareTo() completed (need to be updated in AccountDatabase.java)" />
+    <option name="LAST_COMMIT_MESSAGE" value="toString() completed for all classes. equals() and compareTo() completed (need to be updated in AccountDatabase.java)" />
   </component>
 </project>
