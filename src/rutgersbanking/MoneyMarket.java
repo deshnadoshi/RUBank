@@ -18,6 +18,7 @@ public class MoneyMarket extends Savings {
     private static final int MIN_BALANCE = 2000;
     private static final int MAX_WITHDRAWAL = 3;
     private static final int INVALID_BALANCE  = 0;
+    private static final int MONTHS = 12;
 
     /**
      * Constructor to initialize the instance variable.
@@ -162,6 +163,24 @@ public class MoneyMarket extends Savings {
         }
 
         return NOT_EQUAL; // if either profile is not the same or the type is not the same
+    }
+
+    /**
+     * Updates the balance with the interest rate and fees applied.
+     */
+    @Override
+    public void updateBalance() {
+        double monthlyInterest = 0;
+        if (isLoyal) {
+            monthlyInterest = (balance * LOYAL_INTEREST_RATE) / MONTHS;
+            balance += monthlyInterest; // add the interest to the balance
+        } else {
+            monthlyInterest = (balance * INTEREST_RATE) / MONTHS;
+            balance += monthlyInterest; // add the interest to the balance
+        }
+        if (checkApplyFee()){
+            balance -= FEE;
+        }
     }
 
     /**
