@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Fixed MM.java toString()">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Updates to compareTo/equals in AcctDatabase.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Campus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/CollegeChecking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697375452851</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updates to compareTo/equals in AcctDatabase.java">
+      <option name="closed" value="true" />
+      <created>1697387409648</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1697387409648</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,6 +223,7 @@
     <MESSAGE value="Methods to add fee and interest to the balance, to calculate fee/interest. equals() methods completed. Set-up for compareTo()." />
     <MESSAGE value="toString() completed for all classes. equals() and compareTo() completed (need to be updated in AccountDatabase.java)" />
     <MESSAGE value="Fixed MM.java toString()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed MM.java toString()" />
+    <MESSAGE value="Updates to compareTo/equals in AcctDatabase.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates to compareTo/equals in AcctDatabase.java" />
   </component>
 </project>

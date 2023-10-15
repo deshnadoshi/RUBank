@@ -2,7 +2,7 @@ package rutgersbanking;
 import java.util.Calendar;
 
 /**
- Determines validity of a given date given the day, month, and year.
+ Defines a date and determines its validity of a given date given the day, month, and year.
  @author Deshna Doshi, Haejin Song
  */
 public class Date implements Comparable<Date>{
@@ -211,9 +211,8 @@ public class Date implements Comparable<Date>{
     }
 
     /**
-     Determines if the day of the date (given the month and year are within six months) is within six months.
-
-     @return true if the day (and month and year) are within six months, false otherwise.
+     * Determines if the day of the date (given the month and year are within six months) is within six months.
+     * @return true if the day (and month and year) are within six months, false otherwise.
      */
     public boolean withinSixMonths_CompleteCheck(/*int currDay, int currMonth, int currYear*/){
 
@@ -349,7 +348,6 @@ public class Date implements Comparable<Date>{
         test_RealDate();
 
     }
-
 
     /**
      Confirms that a non-leap year does not have more than 28 days.

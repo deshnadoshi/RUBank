@@ -1,7 +1,10 @@
 package rutgersbanking;
-
 import java.text.DecimalFormat;
 
+/**
+ * Defines a bank account for a user based on their information, balance, loyalty status, and withdrawal amounts.
+ * @author Deshna Doshi, Haejin Song
+ */
 public class MoneyMarket extends Savings {
     private int withdrawal; //number of withdrawals
 
@@ -12,6 +15,9 @@ public class MoneyMarket extends Savings {
     private static final int EXCEED_WITHDRAWAL_FEE = 10; // If the withdrawal > 3, then $10 fee is deducted.
     private static final int EQUAL_COMPARATOR = 0;
     private static final int NOT_EQUAL = -2;
+    private static final int MIN_BALANCE = 2000;
+    private static final int MAX_WITHDRAWAL = 3;
+    private static final int INVALID_BALANCE  = 0;
 
     /**
      * Constructor to initialize the instance variable.
@@ -19,6 +25,7 @@ public class MoneyMarket extends Savings {
      */
     public MoneyMarket(Profile holder, double balance, boolean isLoyal, int withdrawal) {
         super(holder, balance, true);
+        isLoyal = checkLoyalty();
         this.withdrawal = withdrawal;
     }
 
@@ -47,45 +54,73 @@ public class MoneyMarket extends Savings {
         return holder.age() >= MIN_AGE;
     }
 
-
+    /**
+     * Determines if the balance amount if valid.
+     * @param openingAccount boolean to designate if this is the first time opening an account or not.
+     * @return true if the balance is more than 0, false otherwise.
+     */
     public boolean balanceIsValid(boolean openingAccount) {
         if (openingAccount) { // Checking if this is the first time an account is being opened
-            return balance >= 2000;
-        } else return !(balance <= 0);
+            return balance >= MIN_BALANCE;
+        } else return !(balance <= INVALID_BALANCE);
     }
 
+    /**
+     * Determine if the number of withdrawals will lead to a fee being deducted.
+     * If yes, deduct the fee. Otherwise, do nothing.
+     */
     private void checkWithdrawal() {
-        if (withdrawal > 3){
+        if (withdrawal > MAX_WITHDRAWAL){
             balance -= EXCEED_WITHDRAWAL_FEE;
         }
     }
 
+    /**
+     * Calculates the monthly interest that applies to the account.
+     * @return the monthly fee that applies to the account.
+     */
     @Override
     public double calcInterest() {
         return super.calcInterest();
     }
 
+    /**
+     * Calculates the fee that applies to the account.
+     * @return the fee that applies to the account.
+     */
     @Override
     public int calcFee() {
         return super.calcFee();
     }
 
+    /**
+     * Determines if the fee applies, based on the balance.
+     * @return true if the balance is at least 2000 and the withdrawals are less than equal to 3, false otherwise.
+     */
     @Override
     public boolean checkApplyFee(){
-        return !(balance >= 2000) || withdrawal > 3; // if the balance is more than 2000 and withdrawal <= 3 don't apply the fee
+        return !(balance >= MIN_BALANCE) || withdrawal > MAX_WITHDRAWAL; // if the balance is more than 2000 and withdrawal <= 3 don't apply the fee
     }
 
+    /**
+     * Determines if a customer is loyal based on their account balance.
+     * @return true if the account holder is loyal, false otherwise.
+     */
     public boolean checkLoyalty(){
-        if (balance >= 2000){
+        if (balance >= MIN_BALANCE){
             isLoyal = true;
             return true;
         } else {
             isLoyal = false;
+            return false;
         }
-        return false;
     }
 
-
+    /**
+     * Determines if two accounts are equivalent/of the same type.
+     * @param compareMoneyMarket the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
+     */
     @Override
     public boolean equals(Object compareMoneyMarket){
         if (getClass() != compareMoneyMarket.getClass()){
@@ -111,19 +146,28 @@ public class MoneyMarket extends Savings {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    /**
+     * Determines if two accounts have the same holder information.
+     * @param savings the account to be compared.
+     * @return true if the holder information of any two accounts is the same, false otherwise.
+     */
     @Override
     public int compareTo(Account savings) {
         int profileCompare = savings.getHolder().compareTo(holder);
         boolean typeCompare = savings.getClass().equals(getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
 
-        if (profileCompare == 0 && typeCompare){
+        if (profileCompare == EQUAL_COMPARATOR && typeCompare){
             return EQUAL_COMPARATOR;
         }
 
         return NOT_EQUAL; // if either profile is not the same or the type is not the same
     }
 
+    /**
+     * Displays the account information.
+     * @return a String of the account information.
+     */
     @Override
     public String toString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -136,6 +180,10 @@ public class MoneyMarket extends Savings {
         return "Money Market::Savings::" + holder.toString() + "::Balance " + balanceFormat + "::withdrawal: " + withdrawal;
     }
 
+    /**
+     * Updates the balance with the fees and monthly interest, displays the account information
+     * @return a String of the account information, with fees and interest included.
+     */
     @Override
     public String netBalanceToString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -143,6 +191,7 @@ public class MoneyMarket extends Savings {
         String balanceFormat = currencyFormat.format(balance);
         String feeFormat = currencyFormat.format(calcFee());
         String interestFormat = currencyFormat.format(calcInterest());
+        checkLoyalty();
 
         if (isLoyal){
             return "Money Market::Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal::withdrawal: " + withdrawal
@@ -152,24 +201,6 @@ public class MoneyMarket extends Savings {
                 + "::fee " + feeFormat + "::monthly interest " + interestFormat;
     }
 
-    // delete this later, only for testing
-    public static void main (String [] args){
-        Profile p = new Profile("name1", "name2", new Date(2003, 11, 4));
-        Account mm = new MoneyMarket(p, 2001, true, 0);
-        Account mm2 = new MoneyMarket(p, 1111, true, 0);
-        Account s = new Savings(p, 1123, true);
-        Account s2 = new Savings (p, 1123, true);
-        System.out.println(s.compareTo(mm)); // should not be equal, and they r not equal !!
-        // can use compareto for find() function
 
-        System.out.println(s.equals(mm)); // should be false because their classes don't match! yes ! false
-        // use equals for deposit finding and withdraw finding
-
-        System.out.println(s.equals(s2)); // should be true;  IT IS SLAY
-        System.out.println(mm.compareTo(mm2)); // should be 0: it is
-        System.out.println(mm.equals(mm2)); // should be true: it is
-        System.out.println(mm.toString());
-        System.out.println(mm.netBalanceToString());
-    }
 
 }
