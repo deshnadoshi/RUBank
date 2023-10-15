@@ -129,5 +129,45 @@ public class AccountDatabase {
 
     public void printUpdatedBalances() {
 
-    } //apply the interests/fees
+    } //apply the interests/fees (1 month passes)
+
+    /**
+     Implementation of Quicksort for print methods.
+     @param unsortedArray the array that is being sorted
+     @param low the first index of the part of the array being sorted
+     @param high the last index of the part of the array being sorted
+     */
+    public void quickSort(Account[] unsortedArray, int low, int high) {
+        if (low >= high || low < 0) {
+            return;
+        }
+        int pivot = partition(unsortedArray, low, high);
+        quickSort(unsortedArray, low, pivot - 1);
+        quickSort(unsortedArray, pivot + 1, high);
+    }
+
+    private int partition(Account[] unsortedArray, int low, int high) {
+        Account pivot = unsortedArray[high];
+        int temp_pivot = low - 1;
+        for (int i = low; i < high; i++) {
+            if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) < 0) {
+                temp_pivot += 1;
+                swap(i, temp_pivot, unsortedArray);
+            } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
+                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
+                temp_pivot += 1;
+                swap(i, temp_pivot, unsortedArray);
+            }
+        }
+        temp_pivot += 1;
+        swap(temp_pivot, high, unsortedArray);
+        return temp_pivot;
+    }
+
+    private void swap(int i, int j, Account[] A) {
+        Account temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
+
 }
