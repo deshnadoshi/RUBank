@@ -1,13 +1,25 @@
 package rutgersbanking;
 import java.text.DecimalFormat;
 
+/**
+ * Defines a Checking account for a user based on their information and balance.
+ * @author Deshna Doshi, Haejin Song
+ */
+
 public class Checking extends Account {
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 12;
     private static final int MIN_AGE = 16;
     private static final int MONTHS = 12;
     private static final int EQUAL_COMPARATOR = 0;
+    private static final int INVALID_BALANCE  = 0;
+    private static final int MIN_BALANCE = 1000;
 
+    /**
+     * Constructor to initialize the instance variables.
+     * @param holder the Profile object that includes an account holder's information.
+     * @param balance the balance in the account.
+     */
     public Checking(Profile holder, double balance) {
         super(holder, balance);
     }
@@ -29,8 +41,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Determines if the account holder is at least 16.
+     * @return true if the holder is at least 16, false otherwise.
      */
     @Override
     public boolean checkAge() {
@@ -41,16 +53,16 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Determines if the balance amount if valid.
+     * @return true if the balance is more than 0, false otherwise.
      */
     @Override
     public boolean balanceIsValid() {
-        return !(balance <= 0);
+        return !(balance <= INVALID_BALANCE);
     }
 
     /**
-     *
+     * Updates the balance with the interest rate and fees applied.
      */
     @Override
     public void updateBalance() {
@@ -62,8 +74,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Calculates the monthly interest that applies to the account.
+     * @return the monthly interest.
      */
     @Override
     public double calcInterest() {
@@ -71,8 +83,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Calculates the fee that applies to the account.
+     * @return the fee that applies to the account.
      */
     @Override
     public int calcFee() {
@@ -83,18 +95,17 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Determines if the fee applies, based on the balance.
+     * @return true if the balance is at least 1000, false otherwise.
      */
     public boolean checkApplyFee(){
-        return !(balance >= 1000); // if the balance is more than 500 don't apply the fee
+        return !(balance >= MIN_BALANCE); // if the balance is more than 500 don't apply the fee
     }
 
-
     /**
-     *
-     * @param compareChecking
-     * @return
+     * Determines if two accounts are equivalent/of the same type.
+     * @param compareChecking the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
      */
     @Override
     public boolean equals(Object compareChecking){
@@ -123,9 +134,9 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @param checking the object to be compared.
-     * @return
+     * Determines if two accounts have the same holder information.
+     * @param checking the account to be compared.
+     * @return true if the holder information of any two accounts is the same, false otherwise.
      */
     @Override
     public int compareTo(Account checking) {
@@ -133,6 +144,10 @@ public class Checking extends Account {
 
     }
 
+    /**
+     * Displays the account information.
+     * @return a String of the account information.
+     */
     @Override
     public String toString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -142,8 +157,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Updates the balance with the fees and monthly interest, displays the account information
+     * @return @return a String of the account information, with fees and interest included.
      */
     @Override
     public String netBalanceToString(){
@@ -157,25 +172,4 @@ public class Checking extends Account {
                 "::monthly interest " + interestFormat;
     }
 
-    // delete this later on (only for testing)
-    public static void main (String [] args){
-        Profile p = new Profile("h", "d", new Date(2003, 11, 4));
-        Account cc = new CollegeChecking(p, 1111, Campus.NEW_BRUNSWICK);
-        Account c = new Checking(p, 1123);
-        Account c2 = new Checking (p, 1123);
-        System.out.println(c.compareTo(cc)); // should be equal! and it is!
-        // use compareto for finding find() function and any cc or c that r same 2 same
-
-        System.out.println(c.equals(cc)); // should be false because their classes don't match! yes ! false
-        System.out.println(cc.equals(c));
-        // use equals for deposit finding and withdraw finding
-
-
-        System.out.println(c.equals(c2)); // should be true;  IT IS SLAY
-
-        System.out.println(c.netBalanceToString());
-        System.out.println(c.toString());
-        System.out.println(cc.netBalanceToString());
-        System.out.println(cc.toString());
-    }
 }

@@ -1,7 +1,10 @@
 package rutgersbanking;
-
 import java.text.DecimalFormat;
 
+/**
+ * Defines a Savings account for a user based on their information, balance, and loyalty status.
+ * @author Deshna Doshi, Haejin Song
+ */
 public class Savings extends Account {
     protected boolean isLoyal;
 
@@ -12,6 +15,8 @@ public class Savings extends Account {
     private static final int MONTHS = 12;
     private static final int EQUAL_COMPARATOR = 0;
     private static final int NOT_EQUAL = -2;
+    private static final int MIN_BALANCE = 500;
+    private static final int INVALID_BALANCE = 0;
 
     /**
      * Constructor to initialize the instance variable.
@@ -22,12 +27,12 @@ public class Savings extends Account {
         this.isLoyal = isLoyal;
     }
 
-    // MoneyMarket.java keeps on yelling at me whenever i don't have a default constructor for some reason so i've added one in
-    // i'm not fully sure what it's supposed to be fore though
+    /**
+     * Default constructor to ensure proper usage for child classes.
+     */
     public Savings(){
 
     }
-
 
     /**
      * Provides the monthly fee associated with the account.
@@ -45,6 +50,10 @@ public class Savings extends Account {
         return INTEREST_RATE;
     }
 
+    /**
+     * Determines if the account holder is at least 16.
+     * @return true if the holder is at least 16, false otherwise.
+     */
     @Override
     public boolean checkAge() {
         if(holder.age() >= MIN_AGE){
@@ -53,16 +62,22 @@ public class Savings extends Account {
         return false;
     }
 
-
+    /**
+     * Determines if the balance amount if valid.
+     * @return true if the balance is more than 0, false otherwise.
+     */
     @Override
     public boolean balanceIsValid() {
-        if (balance <= 0){
+        if (balance <= INVALID_BALANCE){
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Updates the balance with the interest rate and fees applied.
+     */
     @Override
     public void updateBalance() {
         double monthlyInterest = 0;
@@ -78,18 +93,30 @@ public class Savings extends Account {
         }
     }
 
+    /**
+     * Determines if the fee applies, based on the balance.
+     * @return true if the balance is at least 500, false otherwise.
+     */
     public boolean checkApplyFee(){
-        if (balance >= 500){
+        if (balance >= MIN_BALANCE){
             return false; // if the balance is more than 500 don't apply the fee
         }
 
         return true;
     }
 
+    /**
+     * Calculates the monthly interest that applies to the account.
+     * @return the monthly interest.
+     */
     public double calcInterest() {
         return (balance * INTEREST_RATE) / MONTHS;
     }
 
+    /**
+     * Calculates the fee that applies to the account.
+     * @return the fee that applies to the account.
+     */
     @Override
     public int calcFee() {
         if (checkApplyFee()){
@@ -100,9 +127,9 @@ public class Savings extends Account {
 
 
     /**
-     *
-     * @param compareSavings
-     * @return
+     * Determines if two accounts are equivalent/of the same type.
+     * @param compareSavings the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
      */
     @Override
     public boolean equals(Object compareSavings){
@@ -128,20 +155,28 @@ public class Savings extends Account {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
-
+    /**
+     * Determines if two accounts have the same holder information.
+     * @param savings the account to be compared.
+     * @return true if the holder information of any two accounts is the same, false otherwise.
+     */
     @Override
     public int compareTo(Account savings) {
         int profileCompare = savings.getHolder().compareTo(holder);
         boolean typeCompare = savings.getClass().equals(getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
 
-        if (profileCompare == 0 && typeCompare){
+        if (profileCompare == EQUAL_COMPARATOR && typeCompare){
             return EQUAL_COMPARATOR;
         }
 
         return NOT_EQUAL; // if either profile is not the same or the type is not the same
     }
 
+    /**
+     * Displays the account information.
+     * @return a String of the account information.
+     */
     @Override
     public String toString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -154,6 +189,11 @@ public class Savings extends Account {
         return "Savings::" + holder.toString() + "::Balance " + balanceFormat;
     }
 
+
+    /**
+     * Updates the balance with the fees and monthly interest, displays the account information
+     * @return a String of the account information, with fees and interest included.
+     */
     @Override
     public String netBalanceToString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -162,7 +202,7 @@ public class Savings extends Account {
         String feeFormat = currencyFormat.format(calcFee());
         String interestFormat = currencyFormat.format(calcInterest());
 
-        if (isLoyal){
+        if (isLoyal){ // isLoyal status is entered by the user
             return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal" + "::fee "
                     + feeFormat + "::monthly interest " + interestFormat;
         }
@@ -170,18 +210,4 @@ public class Savings extends Account {
                 + feeFormat + "::monthly interest " + interestFormat;
     }
 
-    // delete this later on (only for testing)
-    public static void main (String [] args){
-        Profile p = new Profile("h", "d", new Date(2003, 11, 4));
-        Account mm = new MoneyMarket(p, 1111, true, 0);
-        Account s = new Savings(p, 1123, true);
-        Account s2 = new Savings (p, 1123, true);
-        System.out.println(s.compareTo(mm)); // should not be equal, and they r not equal !!
-        // can use compareto for find() function
-
-        System.out.println(s.equals(mm)); // should be false because their classes don't match! yes ! false
-        // use equals for deposit finding and withdraw finding
-
-        System.out.println(s.equals(s2)); // should be true;  IT IS SLAY
-    }
 }

@@ -1,6 +1,11 @@
 package rutgersbanking;
 import java.text.DecimalFormat;
 
+/**
+ * Defines a College Checking account for a user based on their information, balance, and college campus.
+ * @author Deshna Doshi, Haejin Song
+ */
+
 public class CollegeChecking extends Checking {
     private Campus campus;
 
@@ -11,7 +16,7 @@ public class CollegeChecking extends Checking {
 
     /**
      * Constructor to initialize the instance variable.
-     * @param campus Campus associated with the College Checking account.
+     * @param campus the Campus associated with the College Checking account.
      */
     public CollegeChecking(Profile holder, double balance, Campus campus) {
         super(holder, balance);
@@ -42,6 +47,10 @@ public class CollegeChecking extends Checking {
         return campus.getCode();
     }
 
+    /**
+     * Determines if the account holder is at least 16 and under 24.
+     * @return true if the holder is at least 16 and under 24, false otherwise.
+     */
     @Override
     public boolean checkAge() {
         if (holder.age() >= MIN_AGE && holder.age() <= MAX_AGE){
@@ -50,27 +59,47 @@ public class CollegeChecking extends Checking {
         return false;
     }
 
-
+    /**
+     * Determines if the balance amount if valid.
+     * Same implementation as parent class, Checking.
+     * @return true if the balance is more than 0, false otherwise.
+     */
     @Override
     public boolean balanceIsValid() {
         return super.balanceIsValid();
     }
 
 
+    /**
+     * Updates the balance with the interest rate and fees applied.
+     */
     @Override
     public void updateBalance() {
         super.updateBalance();
     }
 
+    /**
+     * Calculates the monthly interest that applies to the account.
+     * @return the monthly interest.
+     */
     @Override
     public double calcInterest() {
         return super.calcInterest();
     }
 
+    /**
+     * Calculates the fee that applies to the account. (For a CollegeChecking, the fee is 0)
+     * @return 0, the fee of a CollegeChecking account.
+     */
     @Override
     public int calcFee() {
         return 0;
     }
+
+    /**
+     * Displays the account information.
+     * @return a String of the account information.
+     */
     @Override
     public String toString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
@@ -79,6 +108,10 @@ public class CollegeChecking extends Checking {
         return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::" + campus.toString();
     }
 
+    /**
+     * Updates the balance with the fees and monthly interest, displays the account information
+     * @return a String of the account information, with fees and interest included.
+     */
     @Override
     public String netBalanceToString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");

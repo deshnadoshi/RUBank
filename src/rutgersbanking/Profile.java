@@ -1,22 +1,42 @@
 package rutgersbanking;
 import java.util.Calendar;
 
+/**
+ * Defines a profile for an account holder based on their first name, last name, and date of birth.
+ * @author Deshna Doshi, Haejin Song
+ */
 public class Profile implements Comparable<Profile> {
     private String fname;
     private String lname;
     private Date dob;
 
     private final int NOT_EQUAL = -2; // for the compareTo method; -2 output means profiles are not equal
+
+    /**
+     * Constructor to initialize the values of the instance variables.
+     * @param fname first name of the account holder.
+     * @param lname last name of the account holder.
+     * @param dob date of birth of the account holder.
+     */
     public Profile(String fname, String lname, Date dob){
         this.fname = fname;
         this.lname = lname;
         this.dob = dob;
     }
 
+    /**
+     * Determines if the date of birth is a valid date.
+     * @return true if the date of borth is valid, false otherwise.
+     */
     public boolean isValidDOB(){
        return dob.isValid();
     }
 
+    /**
+     * Compares two profiles to each other, based on the first name, last name, and date of birth.
+     * @param compareProfile the object to be compared.
+     * @return 0 if the two objects are equal, -2 otherwise.
+     */
     @Override
     public int compareTo(Profile compareProfile){
         int compareResult = 0;
@@ -50,7 +70,7 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
-     *
+     * Prints the profile information as a string.
      * @return
      */
     public String toString(){
@@ -58,24 +78,24 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
-     * 
-     * @return
+     * Getter for the first name instance variable.
+     * @return the first name.
      */
     public String getFname(){
         return fname;
     }
 
     /**
-     *
-     * @return
+     * Getter for the last name instance variable.
+     * @return the last name.
      */
     public String getLname(){
         return lname;
     }
 
     /**
-     *
-     * @return
+     * Getter for the date of birth instance variable.
+     * @return the date of birth.
      */
     public Date getDOB(){
         return dob;

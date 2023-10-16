@@ -1,5 +1,9 @@
 package rutgersbanking;
 
+/**
+ * Enum class to denote the campus for a College Checking account.
+ * @author Deshna Doshi, Haejin Song
+ */
 public enum Campus {
     NEW_BRUNSWICK(0),
     NEWARK(1),
