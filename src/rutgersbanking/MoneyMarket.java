@@ -66,6 +66,14 @@ public class MoneyMarket extends Savings {
         } else return !(balance <= INVALID_BALANCE);
     }
 
+    public void addWithdrawal() {
+        this.withdrawal += 1;
+    }
+
+    public void resetWithdrawal() {
+        this.withdrawal = 0;
+    }
+
     /**
      * Determine if the number of withdrawals will lead to a fee being deducted.
      * If yes, deduct the fee. Otherwise, do nothing.
@@ -125,7 +133,7 @@ public class MoneyMarket extends Savings {
     @Override
     public boolean equals(Object compareMoneyMarket){
         // if (compareMoneyMarket == null) return false;
-        if (MoneyMarket.class != compareMoneyMarket.getClass()){
+        if (!MoneyMarket.class.equals(compareMoneyMarket.getClass())) {
             return false;
         }
 

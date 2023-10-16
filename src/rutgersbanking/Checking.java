@@ -111,7 +111,7 @@ public class Checking extends Account {
     public boolean equals(Object compareChecking){
         // if (compareChecking == null) return false;
         Class compareCheckingClass = compareChecking.getClass();
-        if (CollegeChecking.class != compareChecking.getClass() && Checking.class != compareChecking.getClass()) {
+        if (!CollegeChecking.class.equals(compareChecking.getClass()) && !Checking.class.equals(compareChecking.getClass())) {
             return false;
         }
 

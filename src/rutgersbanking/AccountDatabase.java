@@ -117,6 +117,9 @@ public class AccountDatabase {
         // need check if account.balance is > the real account's current balance
         if (account.getBalance() <= accounts[withdrawFromAccount].getBalance()){
             accounts[withdrawFromAccount].balance -= account.getBalance();
+            if (account.getClass().equals(MoneyMarket.class)) {
+                ((MoneyMarket) account).addWithdrawal();
+            }
             // reduce the withdrawn amount from the real account's current balance
             return true;
         }
@@ -150,6 +153,15 @@ public class AccountDatabase {
     } // this considers C and CC as separate account, S and MM are different
     // to be used in deposit, withdraw, close account
 
+    /*
+    public void print() {
+        if (numAcct == 0) System.out.println("Account Database is empty!");
+        Account[] sortedArray = arrayForSorting(accounts);
+        for (int i = 0; i < numAcct; i++) {
+            System.out.println(sortedArray[i]);
+        }
+    }
+*/
     public void printSorted() {
         if (numAcct == 0) System.out.println("Account Database is empty!");
         else {
@@ -186,6 +198,9 @@ public class AccountDatabase {
             for (int i = 0; i < numAcct; i++) {
                 sortedArray[i].updateBalance();
                 System.out.println(sortedArray[i]);
+                if (sortedArray[i].getClass().equals(MoneyMarket.class)) {
+                    ((MoneyMarket) sortedArray[i]).resetWithdrawal();
+                }
             }
             System.out.println("*end of list.\n");
         }

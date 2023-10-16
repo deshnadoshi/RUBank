@@ -11,6 +11,7 @@ public class CollegeChecking extends Checking {
 
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 0; // No monthly fee for CollegeChecking
+    private static final int MONTHS = 12;
     private static final int MIN_AGE = 16;
     private static final int MAX_AGE = 24;
 
@@ -75,7 +76,8 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public void updateBalance() {
-        super.updateBalance();
+        double monthlyInterest = (balance * INTEREST_RATE) / MONTHS;
+        balance += monthlyInterest; // add the interest to the balance
     }
 
     /**
@@ -127,7 +129,7 @@ public class CollegeChecking extends Checking {
     public boolean equals(Object compareCollegeChecking){
         // if (compareChecking == null) return false;
         //Class compareCollegeCheckingClass = compareCollegeChecking.getClass();
-        if (CollegeChecking.class != compareCollegeChecking.getClass() && Checking.class != compareCollegeChecking.getClass()){
+        if (!CollegeChecking.class.equals(compareCollegeChecking.getClass()) && !Checking.class.equals(compareCollegeChecking.getClass())){
             return false;
         }
 

@@ -134,7 +134,7 @@ public class Savings extends Account {
     @Override
     public boolean equals(Object compareSavings) {
         // if (compareSavings == null) return false;
-        if (Savings.class != compareSavings.getClass()){
+        if (!Savings.class.equals(compareSavings.getClass())){
             return false;
         }
         Account savings = (Savings) compareSavings; // type cast to use in equals
@@ -208,7 +208,7 @@ public class Savings extends Account {
             return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal" + "::fee "
                     + feeFormat + "::monthly interest " + interestFormat;
         }
-        return "College Checking::" + holder.toString() + "::Balance " + balanceFormat + "::fee "
+        return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::fee "
                 + feeFormat + "::monthly interest " + interestFormat;
     }
 
