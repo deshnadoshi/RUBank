@@ -69,4 +69,17 @@ public class DateTest {
         Date testCase7 = new Date(2023,9,26);
         assertTrue(testCase7.isValid());
     }
+
+    /**
+     Confirms that a year before 1900 and a year after 2100 are not valid.
+     */
+    @org.junit.Test
+    public void test_OutofBoundsYears() {
+        Date testCase8a = new Date(1888,5,1);
+        Date testCase8b = new Date(2103,6,24);
+
+        assertFalse(testCase8a.isValid());
+        assertFalse(testCase8b.isValid());
+
+    }
 }
