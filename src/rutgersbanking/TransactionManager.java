@@ -190,7 +190,9 @@ public class TransactionManager {
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 if (checkDate(birthday, "S")) {
                     Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), Boolean.parseBoolean(commandArg[6]));
+                    Boolean tempBool = false;
+                    if (commandArg[6].equals("1")) tempBool = true;
+                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), tempBool);
                 }
             }
             case "MM" -> {
@@ -253,7 +255,6 @@ public class TransactionManager {
     private void depositAccount(String [] command, AccountDatabase database){
         if (checkDepositProperBalance(command[5])) {
             Account temp = makeDepAccount(command);
-
             if (!database.depositNotFound(temp)) {
                 database.deposit(temp);
                 System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
@@ -309,7 +310,6 @@ public class TransactionManager {
             Account temp = makeWithdrawAccount(command);
             if (database.checkInsufficientFund(temp, Double.parseDouble(command[5]))) {
                 if (database.withdraw(temp)) {
-                    database.withdraw(temp);
                     System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
                             " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Withdraw - balance updated.");
                 } else {
@@ -330,7 +330,6 @@ public class TransactionManager {
     private boolean checkValid(String commandArg){
         String [] acceptableCmd = {"O", "C", "D", "W", "P", "PI", "UB", "Q"};
         boolean validCmd = false;
-
         for (int i = 0; i < acceptableCmd.length; i++){
             if (commandArg.equals(acceptableCmd[i])){
                 validCmd = true;
