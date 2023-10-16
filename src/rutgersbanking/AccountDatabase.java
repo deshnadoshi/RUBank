@@ -258,6 +258,7 @@ public class AccountDatabase {
         int depositToAccount = findClose(account);
         if (depositToAccount == NOT_FOUND) {
             return true;
+
         }
 
         return false;
