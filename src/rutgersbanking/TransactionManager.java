@@ -256,7 +256,6 @@ public class TransactionManager {
         if (checkDepositProperBalance(command[5])) {
             Account temp = makeDepAccount(command);
             if (!database.depositNotFound(temp)) {
-                database.deposit(temp);
                 System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
                         " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Deposit - balance updated.");
             } else {

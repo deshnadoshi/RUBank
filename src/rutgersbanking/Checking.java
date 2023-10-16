@@ -172,17 +172,4 @@ public class Checking extends Account {
                 "::monthly interest " + interestFormat;
     }
 
-    public static void main (String [] args){
-        Profile p1 = new Profile("John", "Doe", new Date(2000, 2, 19));
-
-        Account c1 = new Checking(p1, 3000);
-        Account cc = new CollegeChecking(p1, 3000, Campus.NEW_BRUNSWICK);
-        Account s = new Savings(p1, 4000, true);
-        System.out.println(c1.equals(cc)); // says that they are not equal -- which is wrong
-        System.out.println(c1.compareTo(cc)); // says that they are equal -- which is true
-        System.out.println(s.compareTo(cc));
-        System.out.println(cc.compareTo(s));
-
-    }
-
 }

@@ -74,7 +74,7 @@ public class AccountDatabase {
      * @return true if the account is added, false if it is not added.
      */
     public boolean open(Account account) {
-        if (this.find(account) == NOT_FOUND) {
+        if (!contains(account)) {
             if (this.numAcct >= this.accounts.length) {
                 this.grow();
             }
@@ -91,7 +91,7 @@ public class AccountDatabase {
      * @return
      */
     public boolean close(Account account) {
-        int removedAccountIndex = findClose(account);
+        int removedAccountIndex = findUniqueIndex(account);
         if (removedAccountIndex == NOT_FOUND) return false;
 
         for (int i = removedAccountIndex; i < this.numAcct - 1; i++) {
@@ -111,7 +111,7 @@ public class AccountDatabase {
      * @return
      */
     public boolean withdraw(Account account) {
-        int withdrawFromAccount = findClose(account);
+        int withdrawFromAccount = findUniqueIndex(account);
         if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
@@ -130,7 +130,7 @@ public class AccountDatabase {
      * @param account
      */
     public void deposit(Account account) {
-        int depositToAccount = advancedFind(account);
+        int depositToAccount = findUniqueIndex(account);
         if (depositToAccount == NOT_FOUND){
             return;
         }
@@ -155,11 +155,11 @@ public class AccountDatabase {
         else {
             Account[] sortedArray = arrayForSorting(accounts);
             quickSort(sortedArray, 0, sortedArray.length - 1);
-            System.out.println("*Accounts sorted by account type and profile.");
+            System.out.println("\n*Accounts sorted by account type and profile.");
             for (int i = 0; i < numAcct; i++) {
                 System.out.println(sortedArray[i]);
             }
-            System.out.println("*end of list.");
+            System.out.println("*end of list.\n");
         }
 
     } //sort by account type and profile
@@ -169,11 +169,11 @@ public class AccountDatabase {
         else {
             Account[] sortedArray = arrayForSorting(accounts);
             quickSort(sortedArray, 0, sortedArray.length - 1);
-            System.out.println("*list of accounts with fee and monthly interest");
+            System.out.println("\n*list of accounts with fee and monthly interest");
             for (int i = 0; i < numAcct; i++) {
                 System.out.println(sortedArray[i].netBalanceToString());
             }
-            System.out.println("*end of list.");
+            System.out.println("*end of list.\n");
         }
     } //calculate interests/fees
 
@@ -182,12 +182,12 @@ public class AccountDatabase {
         else {
             Account[] sortedArray = arrayForSorting(accounts);
             quickSort(sortedArray, 0, sortedArray.length - 1);
-            System.out.println("*list of accounts with fees and interests applied.");
+            System.out.println("\n*list of accounts with fees and interests applied.");
             for (int i = 0; i < numAcct; i++) {
                 sortedArray[i].updateBalance();
                 System.out.println(sortedArray[i]);
             }
-            System.out.println("*end of list.");
+            System.out.println("*end of list.\n");
         }
     } //apply the interests/fees (1 month passes)
 
@@ -269,6 +269,18 @@ public class AccountDatabase {
 
         // false if you don't have insufficient fund
         return false;
+
+    }
+
+    public int findUniqueIndex(Account account){
+        for (int i = 0; i < numAcct; i++) {
+            if(accounts[i].getClass() == account.getClass()){
+                if (account.equals(accounts[i])){
+                    return i;
+                }
+            }
+        }
+        return NOT_FOUND;
 
     }
 }

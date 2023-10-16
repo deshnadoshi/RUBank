@@ -7,7 +7,7 @@
     <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="fixing errors on tm and ad">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +54,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "local__haejin",
+    "git-widget-placeholder": "deshna__local",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
