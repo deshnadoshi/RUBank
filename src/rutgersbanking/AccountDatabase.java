@@ -23,11 +23,12 @@ public class AccountDatabase {
      * @return
      */
     private int find(Account account) {
+        if (account == null){
+            return NOT_FOUND;
+        }
         for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equals(account)) {
-                if (accounts[i].compareTo(account) == 0) {
-                    return i;
-                }
+            if (account.compareTo(accounts[i]) == 0) {
+                return i;
             }
         }
         return NOT_FOUND;

@@ -162,8 +162,10 @@ public class Savings extends Account {
      */
     @Override
     public int compareTo(Account savings) {
-        int profileCompare = savings.getHolder().compareTo(holder);
-        boolean typeCompare = savings.getClass().equals(getClass());
+        if (savings == null)
+            return NOT_EQUAL;
+        int profileCompare = savings.getHolder().compareTo(this.holder);
+        boolean typeCompare = savings.getClass().equals(this.getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
 
         if (profileCompare == EQUAL_COMPARATOR && typeCompare){

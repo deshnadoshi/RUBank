@@ -120,13 +120,13 @@ public class Checking extends Account {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (checking.getHolder().getFname().equals(holder.getFname())){
+        if (checking.getHolder().getFname().equals(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (checking.getHolder().getLname().equals(holder.getLname())){
+        if (checking.getHolder().getLname().equals(this.holder.getLname())){
             lnameMatch = true;
         }
-        if (checking.getHolder().getDOB().compareTo(holder.getDOB()) == EQUAL_COMPARATOR){
+        if (checking.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
             dobMatch = true;
         }
 
@@ -140,8 +140,9 @@ public class Checking extends Account {
      */
     @Override
     public int compareTo(Account checking) {
-        return checking.getHolder().compareTo(holder);
-
+        if (checking == null)
+            return -2;
+        return checking.getHolder().compareTo(this.holder);
     }
 
     /**
@@ -169,6 +170,19 @@ public class Checking extends Account {
 
         return "Checking::" + holder.toString() + "::Balance " + balanceFormat + "::fee " + feeFormat +
                 "::monthly interest " + interestFormat;
+    }
+
+    public static void main (String [] args){
+        Profile p1 = new Profile("John", "Doe", new Date(2000, 2, 19));
+
+        Account c1 = new Checking(p1, 3000);
+        Account cc = new CollegeChecking(p1, 3000, Campus.NEW_BRUNSWICK);
+        Account s = new Savings(p1, 4000, true);
+        System.out.println(c1.equals(cc)); // says that they are not equal -- which is wrong
+        System.out.println(c1.compareTo(cc)); // says that they are equal -- which is true
+        System.out.println(s.compareTo(cc));
+        System.out.println(cc.compareTo(s));
+
     }
 
 }
