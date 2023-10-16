@@ -124,6 +124,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public boolean equals(Object compareMoneyMarket){
+        // if (compareMoneyMarket == null) return false;
         if (getClass() != compareMoneyMarket.getClass()){
             return false;
         }
@@ -134,13 +135,13 @@ public class MoneyMarket extends Savings {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (moneymarket.getHolder().getFname().equals(holder.getFname())){
+        if (moneymarket.getHolder().getFname().toLowerCase().equals(this.holder.getFname().toLowerCase())){
             fnameMatch = true;
         }
-        if (moneymarket.getHolder().getLname().equals(holder.getLname())){
+        if (moneymarket.getHolder().getLname().toLowerCase().equals(holder.getLname().toLowerCase())){
             lnameMatch = true;
         }
-        if (moneymarket.getHolder().getDOB().compareTo(holder.getDOB()) == EQUAL_COMPARATOR){
+        if (moneymarket.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
             dobMatch = true;
         }
 
@@ -154,8 +155,8 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public int compareTo(Account savings) {
-        int profileCompare = savings.getHolder().compareTo(holder);
-        boolean typeCompare = savings.getClass().equals(getClass());
+        int profileCompare = savings.getHolder().compareTo(this.holder);
+        boolean typeCompare = savings.getClass().equals(this.getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
 
         if (profileCompare == EQUAL_COMPARATOR && typeCompare){

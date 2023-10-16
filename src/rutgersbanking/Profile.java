@@ -10,8 +10,8 @@ public class Profile implements Comparable<Profile> {
     private String lname;
     private Date dob;
 
-    private final int NOT_EQUAL = -2; // for the compareTo method; -2 output means profiles are not equal
-
+    private static final int NOT_EQUAL = -2; // for the compareTo method; -2 output means profiles are not equal
+    private static final int REALIGN_CAL = 1;
     /**
      * Constructor to initialize the values of the instance variables.
      * @param fname first name of the account holder.
@@ -41,8 +41,8 @@ public class Profile implements Comparable<Profile> {
     public int compareTo(Profile compareProfile){
         int compareResult = 0;
 
-        int fNameCompareResult = fname.compareTo(compareProfile.getFname());
-        int lNameCompareResult = lname.compareTo(compareProfile.getLname());
+        int fNameCompareResult = fname.toLowerCase().compareTo(compareProfile.getFname().toLowerCase());
+        int lNameCompareResult = lname.toLowerCase().compareTo(compareProfile.getLname().toLowerCase());
         int dobCompareResult = dob.compareTo(compareProfile.getDOB());
 
         if (fNameCompareResult == 0 && lNameCompareResult == 0 && dobCompareResult == 0){
@@ -61,7 +61,7 @@ public class Profile implements Comparable<Profile> {
         int age = currentDate.get(Calendar.YEAR) - dob.getYear();
 
         // Check if the birthday has already passed this year
-        if (currentDate.get(Calendar.MONTH) < dob.getMonth() || (currentDate.get(Calendar.MONTH) == dob.getMonth() &&
+        if (currentDate.get(Calendar.MONTH) + REALIGN_CAL < dob.getMonth() || (currentDate.get(Calendar.MONTH) + REALIGN_CAL == dob.getMonth() &&
                 currentDate.get(Calendar.DAY_OF_MONTH) < dob.getDay())) {
             age--;
         }

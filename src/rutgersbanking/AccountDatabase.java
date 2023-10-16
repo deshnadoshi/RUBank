@@ -23,16 +23,30 @@ public class AccountDatabase {
      * @return
      */
     private int find(Account account) {
+        if (account == null){
+            return NOT_FOUND;
+        }
         for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equals(account)) {
-                if (accounts[i].compareTo(account) == 0) {
-                    return i;
-                }
+            if (account.compareTo(accounts[i]) == 0) {
+                return i;
             }
         }
         return NOT_FOUND;
     } // this will consider CC and C as the same account, S amd MM are considered different
     // for use in contains () to check if an account alr exists
+
+
+    private int findClose(Account account) {
+        if (account == null){
+            return NOT_FOUND;
+        }
+        for (int i = 0; i < numAcct; i++) {
+            if (account.equals(accounts[i])) {
+                return i;
+            }
+        }
+        return NOT_FOUND;
+    }
 
     /**
      * Increases the size of the accounts array by 4.
@@ -77,14 +91,14 @@ public class AccountDatabase {
      * @return
      */
     public boolean close(Account account) {
-        int removedAccountIndex = advancedFind(account);
+        int removedAccountIndex = findClose(account);
         if (removedAccountIndex == NOT_FOUND) return false;
 
         for (int i = removedAccountIndex; i < this.numAcct - 1; i++) {
             this.accounts[i] = this.accounts[i + 1];
         }
 
-        this.accounts[this.numAcct] = null;
+        this.accounts[this.numAcct - 1] = null;
 
         this.numAcct -= 1;
         return true;
@@ -97,7 +111,7 @@ public class AccountDatabase {
      * @return
      */
     public boolean withdraw(Account account) {
-        int withdrawFromAccount = advancedFind(account);
+        int withdrawFromAccount = findClose(account);
         if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
@@ -117,6 +131,9 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int depositToAccount = advancedFind(account);
+        if (depositToAccount == NOT_FOUND){
+            return;
+        }
         // account.getBalance() contains the amount to deposit
         // Will need to create a "shell" account to hold just the deposit amount, to populate it into the actual account
         accounts[depositToAccount].balance += account.getBalance();
@@ -125,7 +142,7 @@ public class AccountDatabase {
 
     private int advancedFind(Account account) {
         for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equals(account)) {
+            if (account.equals(accounts[i])) {
                 return i;
             }
         }
@@ -226,4 +243,22 @@ public class AccountDatabase {
         A[j] = temp;
     }
 
+    public boolean depositNotFound(Account account) {
+        int depositToAccount = findClose(account);
+        if (depositToAccount == NOT_FOUND) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean checkInsufficientFund(Account account, double withdrawBalance){
+        if (withdrawBalance > account.getBalance()){
+            return true; // you have insufficient funds
+        }
+
+        // false if you don't have insufficient fund
+        return false;
+
+    }
 }
