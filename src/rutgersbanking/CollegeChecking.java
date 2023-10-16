@@ -115,7 +115,6 @@ public class CollegeChecking extends Checking {
     @Override
     public String netBalanceToString(){
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
-        updateBalance();
         String balanceFormat = currencyFormat.format(balance);
         String feeFormat = currencyFormat.format(calcFee());
         String interestFormat = currencyFormat.format(calcInterest());

@@ -23,14 +23,16 @@ public class AccountDatabase {
      * @return
      */
     private int find(Account account) {
-        for (int i = 0; i < accounts.length; i++) {
-            if (accounts[i].compareTo(account) == 0) {
-                return i;
+        for (int i = 0; i < numAcct; i++) {
+            if (accounts[i].equals(account)) {
+                if (accounts[i].compareTo(account) == 0) {
+                    return i;
+                }
             }
         }
         return NOT_FOUND;
     } // this will consider CC and C as the same account, S amd MM are considered different
-        // for use in contains () to check if an account alr exists
+    // for use in contains () to check if an account alr exists
 
     /**
      * Increases the size of the accounts array by 4.
@@ -58,7 +60,7 @@ public class AccountDatabase {
      * @return true if the account is added, false if it is not added.
      */
     public boolean open(Account account) {
-        if (!this.contains(account)) {
+        if (this.find(account) == NOT_FOUND) {
             if (this.numAcct >= this.accounts.length) {
                 this.grow();
             }
@@ -120,20 +122,9 @@ public class AccountDatabase {
         accounts[depositToAccount].balance += account.getBalance();
 
     }
-    public void printSorted() {
-
-    } //sort by account type and profile
-
-    public void printFeesAndInterests() {
-
-    } //calculate interests/fees
-
-    public void printUpdatedBalances() {
-
-    } //apply the interests/fees (1 month passes)
 
     private int advancedFind(Account account) {
-        for (int i = 0; i < accounts.length; i++) {
+        for (int i = 0; i < numAcct; i++) {
             if (accounts[i].equals(account)) {
                 return i;
             }
@@ -141,6 +132,55 @@ public class AccountDatabase {
         return NOT_FOUND;
     } // this considers C and CC as separate account, S and MM are different
     // to be used in deposit, withdraw, close account
+
+    public void printSorted() {
+        if (numAcct == 0) System.out.println("Account Database is empty!");
+        else {
+            Account[] sortedArray = arrayForSorting(accounts);
+            quickSort(sortedArray, 0, sortedArray.length - 1);
+            System.out.println("*Accounts sorted by account type and profile.");
+            for (int i = 0; i < numAcct; i++) {
+                System.out.println(sortedArray[i]);
+            }
+            System.out.println("*end of list.");
+        }
+
+    } //sort by account type and profile
+
+    public void printFeesAndInterests() {
+        if (numAcct == 0) System.out.println("Account Database is empty!");
+        else {
+            Account[] sortedArray = arrayForSorting(accounts);
+            quickSort(sortedArray, 0, sortedArray.length - 1);
+            System.out.println("*list of accounts with fee and monthly interest");
+            for (int i = 0; i < numAcct; i++) {
+                System.out.println(sortedArray[i].netBalanceToString());
+            }
+            System.out.println("*end of list.");
+        }
+    } //calculate interests/fees
+
+    public void printUpdatedBalances() {
+        if (numAcct == 0) System.out.println("Account Database is empty!");
+        else {
+            Account[] sortedArray = arrayForSorting(accounts);
+            quickSort(sortedArray, 0, sortedArray.length - 1);
+            System.out.println("*list of accounts with fees and interests applied.");
+            for (int i = 0; i < numAcct; i++) {
+                sortedArray[i].updateBalance();
+                System.out.println(sortedArray[i]);
+            }
+            System.out.println("*end of list.");
+        }
+    } //apply the interests/fees (1 month passes)
+
+    public Account[] arrayForSorting(Account[] accountsArray) {
+        Account[] temp = new Account[numAcct];
+        for (int i = 0; i < numAcct; i++) {
+            temp[i] = accountsArray[i];
+        }
+        return temp;
+    }
 
     /**
      Implementation of Quicksort for print methods.
@@ -166,6 +206,11 @@ public class AccountDatabase {
                 swap(i, temp_pivot, unsortedArray);
             } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
                     (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
+                temp_pivot += 1;
+                swap(i, temp_pivot, unsortedArray);
+            } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
+                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0) &&
+                    unsortedArray[i].getHolder().getDOB().compareTo(pivot.getHolder().getDOB()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             }
