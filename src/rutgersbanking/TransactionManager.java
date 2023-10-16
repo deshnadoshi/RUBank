@@ -12,9 +12,9 @@ public class TransactionManager {
     private static final int CLOSE_ARGS = 5; // Arguments expected to close an account
 
     private static final int ACCT_TYPE_INDEX = 1; // Account type index in the parsed command
-    private boolean madeAccount = true;
-    private boolean madeCloseAccount = true;
-    private boolean madeDepAccount = true;
+    private boolean madeAccount = false;
+    private boolean madeCloseAccount = false;
+    private boolean madeDepAccount = false;
 
     public void run() {
         System.out.println("Transaction Manager is running. \n");

@@ -123,4 +123,30 @@ public class CollegeChecking extends Checking {
                 + "::fee " + feeFormat + "::monthly interest " + interestFormat;
     }
 
+    @Override
+    public boolean equals(Object compareCollegeChecking){
+        // if (compareChecking == null) return false;
+        if (getClass() != compareCollegeChecking.getClass()){
+            return false;
+        }
+
+        Account collchecking = (Account) compareCollegeChecking; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (collchecking.getHolder().getFname().equals(this.holder.getFname())){
+            fnameMatch = true;
+        }
+        if (collchecking.getHolder().getLname().equals(this.holder.getLname())){
+            lnameMatch = true;
+        }
+        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
 }

@@ -82,6 +82,7 @@ public class AccountDatabase {
             this.numAcct += 1;
             return true;
         }
+
         return false;
     } //add a new account
 
@@ -274,7 +275,7 @@ public class AccountDatabase {
 
     public int findUniqueIndex(Account account){
         for (int i = 0; i < numAcct; i++) {
-            if(accounts[i].getClass() == account.getClass()){
+            if(accounts[i].getClass().toString().equals(account.getClass().toString())){
                 if (account.equals(accounts[i])){
                     return i;
                 }
