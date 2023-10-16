@@ -42,38 +42,60 @@ public class TransactionManager {
 
     private boolean commandParser(String command, AccountDatabase database) {
         String[] parsedCommand = command.split("\\s+");
-        System.out.println(parsedCommand.length); // test
         int counter = 0;
         while (counter < parsedCommand.length) {
             if (checkValid(parsedCommand[counter])) {
                 if (parsedCommand[counter].equals("O")) {
-                    if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
-                        database.open(makeAccount(parsedCommand));
-                    }
+                    if (checkNoArgs(parsedCommand)) {
+                        counter += openAccount(parsedCommand, database);
+                    } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("C")) {
-                    if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
+                    if (checkNoArgs(parsedCommand)) {
                         database.close(makeAccount(parsedCommand));
-                    }
+                        counter += 5;
+                    } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("D")) {
-                    if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
+                    if (checkNoArgs(parsedCommand)) {
                         database.deposit(makeAccount(parsedCommand));
-                    }
+                        counter += 6;
+                    } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("W")) {
-                    if (checkNoArgs(parsedCommand[counter], parsedCommand[ACCT_TYPE_INDEX], parsedCommand.length)){
+                    if (checkNoArgs(parsedCommand)) {
                         database.withdraw(makeAccount(parsedCommand));
-                    }
+                        counter += 6;
+                    } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("P")) {
-                    // don't need to check if it has the correct # of args, the input doesn't have any invalid print commands
+                    database.printSorted();
+                    counter += 1;
                 } else if (parsedCommand[counter].equals("PI")) {
-
+                    database.printFeesAndInterests();
+                    counter += 1;
                 } else if (parsedCommand[counter].equals("UB")){
-
+                    database.printUpdatedBalances();
+                    counter += 1;
                 } else if (parsedCommand[counter].equals("Q")){
                     return true;
                 }
-            }
-            counter++; // delete this (just place holder to check if try-catch for invalid cmd was working)
+            } else counter += parsedCommand.length;
         } return false;
+    }
+
+    private int openAccount(String[] command, AccountDatabase database) {
+        if (checkProperBalance(command[5])) {
+            Account temp = makeAccount(command);
+            if (database.open(temp)) {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " opened.");
+            } else {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is already in the database.");
+            }
+        }
+        if (command[ACCT_TYPE_INDEX].equals("S") || command[ACCT_TYPE_INDEX].equals("CC")) {
+            return OPEN_ARGS_CC_S;
+        } else {
+            return OPEN_ARGS_C_MM;
+        }
     }
 
     private Account makeAccount(String[] commandArg) {
@@ -89,8 +111,12 @@ public class TransactionManager {
                 String[] parsedBday = commandArg[4].split("/");
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                // BELOW LINE IS BROKEN.
-                newAccount = new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), Campus.valueOf(commandArg[6]));
+                Campus campus = Campus.NEWARK;
+                for (Campus check: Campus.values())
+                    if (check.getCode() == Integer.parseInt(commandArg[6])) {
+                        campus = check;
+                    }
+                newAccount = new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), campus);
             }
             case "S" -> {
                 String[] parsedBday = commandArg[4].split("/");
@@ -99,13 +125,15 @@ public class TransactionManager {
                 newAccount = new Savings(newProfile, Double.parseDouble(commandArg[5]), Boolean.parseBoolean(commandArg[6]));
             }
             case "MM" -> {
-                String[] parsedBday = commandArg[4].split("/");
-                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
-                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                newAccount = new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+                if (Double.parseDouble(commandArg[5]) < 2000) System.out.println("Minimum of $2000 to open a Money Market account.");
+                else {
+                    String[] parsedBday = commandArg[4].split("/");
+                    Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                    Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                    newAccount = new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+                }
             }
-        }
-        return newAccount;
+        } return newAccount;
     }
 
 
@@ -163,16 +191,49 @@ public class TransactionManager {
         return true;
     }
 
+    private boolean checkProperBalance(String balance) {
+        try {
+            Double testing = Double.parseDouble(balance);
+            if (testing <= 0) {
+                System.out.println("Initial deposit cannot be 0 or negative.");
+                return false;
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Not a valid amount.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkProperBirthday(Account account, String birthday, String[] command) {
+        String[] birthdayParts = birthday.split("/");
+        String acctType = command[ACCT_TYPE_INDEX];
+        Date bday = new Date(Integer.parseInt(birthdayParts[2]), Integer.parseInt(birthdayParts[0]),
+                Integer.parseInt(birthdayParts[1]));
+        if (!bday.validCalendarDate()) {
+            System.out.println("DOB invalid: " + birthday + " not a valid calendar date!");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Try-catch InputMismatchException for insufficient input arguments.
-     * @param cmdType
-     * @param acctType
-     * @param numArgs
+     * @param command
      * @return
      */
-    private boolean checkNoArgs(String cmdType, String acctType, int numArgs){
+
+    private boolean checkNoArgs(String[] command){
+        String cmdType = command[0];
+        String acctType = null;
+        int numArgs = command.length;
         try {
             if (cmdType.equals("O")){
+                if (numArgs < 6) {
+                    throw new InputMismatchException("Missing data for opening an account.");
+                } else {
+                    acctType = command[1];
+                }
                 if (acctType.equals("CC") || acctType.equals("S")) {
                     if (numArgs != OPEN_ARGS_CC_S) {
                         throw new InputMismatchException("Missing data for opening an account.");
@@ -191,11 +252,7 @@ public class TransactionManager {
             System.out.println(e.getMessage());
             return false;
         }
-
         return true;
     }
-
-
-
 
 }
