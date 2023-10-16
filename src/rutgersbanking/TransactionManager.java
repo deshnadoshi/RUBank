@@ -164,46 +164,34 @@ public class TransactionManager {
     }
 
     private Account makeAccount(String[] commandArg) {
+        String[] parsedBday = commandArg[4].split("/");
+        Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
         switch (commandArg[ACCT_TYPE_INDEX]) {
             case "C" -> {
                 madeAccount = true;
-                String[] parsedBday = commandArg[4].split("/");
-                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 if (checkDate(birthday, "C")) {
                     Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
                     return new Checking(newProfile, Double.parseDouble(commandArg[5]));
                 }
-            }
-            case "CC" -> {
+            } case "CC" -> {
                 madeAccount = true;
-                String[] parsedBday = commandArg[4].split("/");
-                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
-                if (checkDate(birthday, "CC")){
+                if (checkDate(birthday, "CC")) {
                     Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                    if (checkCampus(commandArg)) // if it's a valid campus
+                    if (checkCampus(commandArg)) { // if it's a valid campus
                         return new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), findCampus(Integer.parseInt(commandArg[6])));
+                    }
                 }
-            }
-            case "S" -> {
+            } case "S" -> {
                 madeAccount = true;
-                String[] parsedBday = commandArg[4].split("/");
-                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 if (checkDate(birthday, "S")) {
                     Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                    Boolean tempBool = false;
-                    if (commandArg[6].equals("1")) tempBool = true;
-                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), tempBool);
+                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), commandArg[6].equals("1"));
                 }
-            }
-            case "MM" -> {
-                if (Double.parseDouble(commandArg[5]) < 2000){
+            } case "MM" -> {
+                if (Double.parseDouble(commandArg[5]) < 2000) {
                     System.out.println("Minimum of $2000 to open a Money Market account.");
-                    madeAccount = false;
-                }
-                else {
+                } else {
                     madeAccount = true;
-                    String[] parsedBday = commandArg[4].split("/");
-                    Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                     if (checkDate(birthday, "MM")){
                         Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
                         return new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
@@ -264,7 +252,6 @@ public class TransactionManager {
                         " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
             }
         }
-
     }
 
     private Account makeWithdrawAccount(String[] commandArg) {
@@ -318,7 +305,6 @@ public class TransactionManager {
                 }
             }
         }
-
     }
 
 
@@ -520,7 +506,6 @@ public class TransactionManager {
                 return false;
             }
         }
-
         return true;
     }
 

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="fixing errors on tm and ad">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Fixed print methods, fixed showing isloyal for savings account when account is loyal.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +29,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="deshnadoshi" />
+        <option name="repository" value="RUBank" />
+      </RepoCoordinatesHolder>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -254,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697456221445</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fixed print methods, fixed showing isloyal for savings account when account is loyal.">
+      <option name="closed" value="true" />
+      <created>1697476802797</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1697476802798</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -269,6 +283,7 @@
     <MESSAGE value="Comments in all classes, exception Transacton Mgr, Acct DB." />
     <MESSAGE value="Added JUnit tests for Date, ActDB (need to fix)." />
     <MESSAGE value="fixing errors on tm and ad" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing errors on tm and ad" />
+    <MESSAGE value="Fixed print methods, fixed showing isloyal for savings account when account is loyal." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed print methods, fixed showing isloyal for savings account when account is loyal." />
   </component>
 </project>
