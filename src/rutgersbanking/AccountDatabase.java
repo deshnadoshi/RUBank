@@ -218,16 +218,26 @@ public class AccountDatabase {
         Account pivot = unsortedArray[high];
         int temp_pivot = low - 1;
         for (int i = low; i < high; i++) {
-            if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) < 0) {
+            if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) < 0) {
+                temp_pivot += 1;
+                swap(i, temp_pivot, unsortedArray);
+            } else if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0 &&
+                    unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
                     (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
-            } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
-                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0) &&
-                    unsortedArray[i].getHolder().getDOB().compareTo(pivot.getHolder().getDOB()) < 0) {
+            } else if ((unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0) &&
+                    (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0) &&
+                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
+                temp_pivot += 1;
+                swap(i, temp_pivot, unsortedArray);
+            } else if ((unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0) &&
+                    (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0) &&
+                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) == 0) &&
+                    (unsortedArray[i].getHolder().getDOB().compareTo(pivot.getHolder().getDOB()) < 0)) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             }

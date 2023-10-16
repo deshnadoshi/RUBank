@@ -30,7 +30,7 @@ public class Savings extends Account {
     /**
      * Default constructor to ensure proper usage for child classes.
      */
-    public Savings(){
+    public Savings() {
 
     }
 
@@ -38,7 +38,7 @@ public class Savings extends Account {
      * Provides the monthly fee associated with the account.
      * @return the monthly fee.
      */
-    public double monthlyFee(){
+    public double monthlyFee() {
         return FEE;
     }
 
@@ -46,7 +46,7 @@ public class Savings extends Account {
      * Provides the monthly interest rate associated with the account.
      * @return the monthly interest rate.
      */
-    public double monthlyInterest(){
+    public double monthlyInterest() {
         return INTEREST_RATE;
     }
 
@@ -97,7 +97,7 @@ public class Savings extends Account {
      * Determines if the fee applies, based on the balance.
      * @return true if the balance is at least 500, false otherwise.
      */
-    public boolean checkApplyFee(){
+    public boolean checkApplyFee() {
         if (balance >= MIN_BALANCE){
             return false; // if the balance is more than 500 don't apply the fee
         }
@@ -132,7 +132,7 @@ public class Savings extends Account {
      * @return true if the accounts are equivalent, false otherwise.
      */
     @Override
-    public boolean equals(Object compareSavings){
+    public boolean equals(Object compareSavings) {
         // if (compareSavings == null) return false;
         if (getClass() != compareSavings.getClass()){
             return false;
@@ -169,7 +169,7 @@ public class Savings extends Account {
         boolean typeCompare = savings.getClass().equals(this.getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
 
-        if (profileCompare == EQUAL_COMPARATOR && typeCompare){
+        if (profileCompare == EQUAL_COMPARATOR && typeCompare) {
             return EQUAL_COMPARATOR;
         }
 
@@ -181,11 +181,11 @@ public class Savings extends Account {
      * @return a String of the account information.
      */
     @Override
-    public String toString(){
+    public String toString() {
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
         String balanceFormat = currencyFormat.format(balance);
 
-        if (isLoyal){
+        if (isLoyal) {
             return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal";
         }
 
@@ -198,13 +198,13 @@ public class Savings extends Account {
      * @return a String of the account information, with fees and interest included.
      */
     @Override
-    public String netBalanceToString(){
+    public String netBalanceToString() {
         DecimalFormat currencyFormat = new DecimalFormat("$#,##0.00");
         String balanceFormat = currencyFormat.format(balance);
         String feeFormat = currencyFormat.format(calcFee());
         String interestFormat = currencyFormat.format(calcInterest());
 
-        if (isLoyal){ // isLoyal status is entered by the user
+        if (isLoyal) { // isLoyal status is entered by the user
             return "Savings::" + holder.toString() + "::Balance " + balanceFormat + "::is loyal" + "::fee "
                     + feeFormat + "::monthly interest " + interestFormat;
         }
