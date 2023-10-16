@@ -134,7 +134,7 @@ public class Savings extends Account {
     @Override
     public boolean equals(Object compareSavings) {
         // if (compareSavings == null) return false;
-        if (getClass() != compareSavings.getClass()){
+        if (Savings.class != compareSavings.getClass()){
             return false;
         }
         Account savings = (Savings) compareSavings; // type cast to use in equals
@@ -143,10 +143,10 @@ public class Savings extends Account {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (savings.getHolder().getFname().equals(holder.getFname())){
+        if (savings.getHolder().getFname().equalsIgnoreCase(holder.getFname())){
             fnameMatch = true;
         }
-        if (savings.getHolder().getLname().equals(holder.getLname())){
+        if (savings.getHolder().getLname().equalsIgnoreCase(holder.getLname())){
             lnameMatch = true;
         }
         if (savings.getHolder().getDOB().compareTo(holder.getDOB()) == EQUAL_COMPARATOR){

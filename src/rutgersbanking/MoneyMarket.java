@@ -125,7 +125,7 @@ public class MoneyMarket extends Savings {
     @Override
     public boolean equals(Object compareMoneyMarket){
         // if (compareMoneyMarket == null) return false;
-        if (getClass() != compareMoneyMarket.getClass()){
+        if (MoneyMarket.class != compareMoneyMarket.getClass()){
             return false;
         }
 
@@ -135,10 +135,10 @@ public class MoneyMarket extends Savings {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (moneymarket.getHolder().getFname().toLowerCase().equals(this.holder.getFname().toLowerCase())){
+        if (moneymarket.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (moneymarket.getHolder().getLname().toLowerCase().equals(holder.getLname().toLowerCase())){
+        if (moneymarket.getHolder().getLname().equalsIgnoreCase(holder.getLname())){
             lnameMatch = true;
         }
         if (moneymarket.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){

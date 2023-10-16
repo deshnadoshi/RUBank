@@ -27,7 +27,7 @@ public class AccountDatabase {
             return NOT_FOUND;
         }
         for (int i = 0; i < numAcct; i++) {
-            if (account.compareTo(accounts[i]) == 0) {
+            if (account.equals(accounts[i])) {
                 return i;
             }
         }
@@ -41,7 +41,7 @@ public class AccountDatabase {
             return NOT_FOUND;
         }
         for (int i = 0; i < numAcct; i++) {
-            if (account.equals(accounts[i])) {
+            if (account.compareTo(accounts[i]) == 0) {
                 return i;
             }
         }
@@ -99,8 +99,7 @@ public class AccountDatabase {
             this.accounts[i] = this.accounts[i + 1];
         }
 
-        this.accounts[this.numAcct -1] = null;
-
+        this.accounts[this.numAcct - 1] = null;
         this.numAcct -= 1;
         return true;
         //remove the given account
@@ -113,7 +112,7 @@ public class AccountDatabase {
      */
     public boolean withdraw(Account account) {
         int withdrawFromAccount = findUniqueIndex(account);
-        if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
+        //if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
         if (account.getBalance() <= accounts[withdrawFromAccount].getBalance()){
@@ -227,18 +226,18 @@ public class AccountDatabase {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
-                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
+                    unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
-            } else if ((unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0) &&
-                    (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0) &&
-                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0)) {
+            } else if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0 &&
+                    unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
+                    unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
-            } else if ((unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0) &&
-                    (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0) &&
-                    (unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) == 0) &&
-                    (unsortedArray[i].getHolder().getDOB().compareTo(pivot.getHolder().getDOB()) < 0)) {
+            } else if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0 &&
+                    unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
+                    unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) == 0 &&
+                    unsortedArray[i].getHolder().getDOB().compareTo(pivot.getHolder().getDOB()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             }
@@ -255,12 +254,11 @@ public class AccountDatabase {
     }
 
     public boolean depositNotFound(Account account) {
-        int depositToAccount = findClose(account);
+        int depositToAccount = find(account);
         if (depositToAccount == NOT_FOUND) {
             return true;
-
         }
-
+        deposit(account);
         return false;
     }
 

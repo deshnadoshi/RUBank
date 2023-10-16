@@ -126,7 +126,8 @@ public class CollegeChecking extends Checking {
     @Override
     public boolean equals(Object compareCollegeChecking){
         // if (compareChecking == null) return false;
-        if (getClass() != compareCollegeChecking.getClass()){
+        //Class compareCollegeCheckingClass = compareCollegeChecking.getClass();
+        if (CollegeChecking.class != compareCollegeChecking.getClass() && Checking.class != compareCollegeChecking.getClass()){
             return false;
         }
 
@@ -136,10 +137,10 @@ public class CollegeChecking extends Checking {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (collchecking.getHolder().getFname().equals(this.holder.getFname())){
+        if (collchecking.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (collchecking.getHolder().getLname().equals(this.holder.getLname())){
+        if (collchecking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
             lnameMatch = true;
         }
         if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){
