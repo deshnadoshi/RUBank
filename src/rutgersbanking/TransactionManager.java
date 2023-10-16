@@ -14,6 +14,7 @@ public class TransactionManager {
     private static final int ACCT_TYPE_INDEX = 1; // Account type index in the parsed command
     private boolean madeAccount = true;
     private boolean madeCloseAccount = true;
+    private boolean madeDepAccount = true;
 
     public void run() {
         System.out.println("Transaction Manager is running. \n");
@@ -60,12 +61,14 @@ public class TransactionManager {
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("D")) {
                     if (checkNoArgs(parsedCommand)) {
-                        database.deposit(makeAccount(parsedCommand));
+                        depositAccount(parsedCommand, database);
+                        // database.deposit(makeAccount(parsedCommand));
                         counter += 6;
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("W")) {
                     if (checkNoArgs(parsedCommand)) {
-                        database.withdraw(makeAccount(parsedCommand));
+                        // database.withdraw(makeAccount(parsedCommand));
+                        withdrawAccount(parsedCommand, database);
                         counter += 6;
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("P")) {
@@ -209,6 +212,115 @@ public class TransactionManager {
         return null;
     }
 
+    private Account makeDepAccount(String[] commandArg) {
+        switch (commandArg[ACCT_TYPE_INDEX]) {
+            case "C" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new Checking(newProfile, Double.parseDouble(commandArg[5]));
+
+            }
+            case "CC" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), Campus.CAMDEN);
+
+            }
+            case "S" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new Savings(newProfile, Double.parseDouble(commandArg[5]), true);
+
+            }
+            case "MM" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+
+            }
+        } madeAccount = false;
+        return null;
+    }
+
+    private void depositAccount(String [] command, AccountDatabase database){
+        if (checkDepositProperBalance(command[5])) {
+            Account temp = makeDepAccount(command);
+
+            if (!database.depositNotFound(temp)) {
+                database.deposit(temp);
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Deposit - balance updated.");
+            } else {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
+            }
+        }
+
+    }
+
+    private Account makeWithdrawAccount(String[] commandArg) {
+        switch (commandArg[ACCT_TYPE_INDEX]) {
+            case "C" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new Checking(newProfile, Double.parseDouble(commandArg[5]));
+
+            }
+            case "CC" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), Campus.CAMDEN);
+
+            }
+            case "S" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new Savings(newProfile, Double.parseDouble(commandArg[5]), true);
+
+            }
+            case "MM" -> {
+                madeDepAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                return new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+
+            }
+        } madeAccount = false;
+        return null;
+    }
+
+    private void withdrawAccount(String [] command, AccountDatabase database){
+        if (checkWithdrawProperBalance(command[5])) {
+            Account temp = makeWithdrawAccount(command);
+            if (database.checkInsufficientFund(temp, Double.parseDouble(command[5]))) {
+                if (database.withdraw(temp)) {
+                    database.withdraw(temp);
+                    System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                            " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Withdraw - balance updated.");
+                } else {
+                    System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                            " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
+                }
+            }
+        }
+
+    }
+
 
     /**
      * Try-catch exception for an invalid command.
@@ -281,6 +393,35 @@ public class TransactionManager {
         }
         return true;
     }
+
+    private boolean checkDepositProperBalance(String balance) {
+        try {
+            Double testing = Double.parseDouble(balance);
+            if (testing <= 0) {
+                System.out.println("Deposit - amount cannot be 0 or negative.");
+                return false;
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Not a valid amount.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkWithdrawProperBalance(String balance) {
+        try {
+            Double testing = Double.parseDouble(balance);
+            if (testing <= 0) {
+                System.out.println("Withdraw - amount cannot be 0 or negative.");
+                return false;
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Not a valid amount.");
+            return false;
+        }
+        return true;
+    }
+
 
 
     /**
@@ -383,5 +524,7 @@ public class TransactionManager {
 
         return true;
     }
+
+
 
 }

@@ -37,6 +37,9 @@ public class AccountDatabase {
 
 
     private int findClose(Account account) {
+        if (account == null){
+            return NOT_FOUND;
+        }
         for (int i = 0; i < numAcct; i++) {
             if (account.equals(accounts[i])) {
                 return i;
@@ -108,7 +111,7 @@ public class AccountDatabase {
      * @return
      */
     public boolean withdraw(Account account) {
-        int withdrawFromAccount = advancedFind(account);
+        int withdrawFromAccount = findClose(account);
         if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
@@ -128,6 +131,9 @@ public class AccountDatabase {
      */
     public void deposit(Account account) {
         int depositToAccount = advancedFind(account);
+        if (depositToAccount == NOT_FOUND){
+            return;
+        }
         // account.getBalance() contains the amount to deposit
         // Will need to create a "shell" account to hold just the deposit amount, to populate it into the actual account
         accounts[depositToAccount].balance += account.getBalance();
@@ -237,4 +243,22 @@ public class AccountDatabase {
         A[j] = temp;
     }
 
+    public boolean depositNotFound(Account account) {
+        int depositToAccount = findClose(account);
+        if (depositToAccount == NOT_FOUND) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean checkInsufficientFund(Account account, double withdrawBalance){
+        if (withdrawBalance > account.getBalance()){
+            return true; // you have insufficient funds
+        }
+
+        // false if you don't have insufficient fund
+        return false;
+
+    }
 }
