@@ -133,6 +133,7 @@ public class Savings extends Account {
      */
     @Override
     public boolean equals(Object compareSavings){
+        // if (compareSavings == null) return false;
         if (getClass() != compareSavings.getClass()){
             return false;
         }

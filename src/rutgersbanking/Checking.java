@@ -109,7 +109,7 @@ public class Checking extends Account {
      */
     @Override
     public boolean equals(Object compareChecking){
-
+        // if (compareChecking == null) return false;
         if (getClass() != compareChecking.getClass()){
             return false;
         }

@@ -13,6 +13,7 @@ public class TransactionManager {
 
     private static final int ACCT_TYPE_INDEX = 1; // Account type index in the parsed command
     private boolean madeAccount = true;
+    private boolean madeCloseAccount = true;
 
     public void run() {
         System.out.println("Transaction Manager is running. \n");
@@ -53,7 +54,8 @@ public class TransactionManager {
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("C")) {
                     if (checkNoArgs(parsedCommand)) {
-                        database.close(makeAccount(parsedCommand));
+                        closeAccount(parsedCommand, database);
+                       // database.close(makeCloseAccount(parsedCommand));
                         counter += 5;
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("D")) {
@@ -100,6 +102,62 @@ public class TransactionManager {
         } else {
             return OPEN_ARGS_C_MM;
         }
+    }
+
+    private void closeAccount(String [] command, AccountDatabase database){
+        Account temp = makeCloseAccount(command);
+        if (madeCloseAccount){
+            if (database.close(temp)) {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " has been closed.");
+            } else {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
+            }
+        }
+
+    }
+
+    private Account makeCloseAccount(String [] commandArg) {
+        switch (commandArg[ACCT_TYPE_INDEX]) {
+            case "C" -> {
+                madeCloseAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                if (checkDate(birthday, "C")) {
+                    Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                    return new Checking(newProfile, 0);
+                }
+            }
+            case "CC" -> {
+                madeCloseAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                if (checkDate(birthday, "CC")){
+                    Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                    return new CollegeChecking(newProfile, 0, findCampus(2));
+                }
+            }
+            case "S" -> {
+                madeCloseAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                if (checkDate(birthday, "S")) {
+                    Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                    return new Savings(newProfile, 0, true);
+                }
+            }
+            case "MM" -> {
+                madeCloseAccount = true;
+                String[] parsedBday = commandArg[4].split("/");
+                Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
+                if (checkDate(birthday, "MM")){
+                    Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
+                    return new MoneyMarket(newProfile, 0, true, 0);
+                }
+            }
+        } madeCloseAccount = false;
+        return null;
     }
 
     private Account makeAccount(String[] commandArg) {

@@ -35,6 +35,16 @@ public class AccountDatabase {
     } // this will consider CC and C as the same account, S amd MM are considered different
     // for use in contains () to check if an account alr exists
 
+
+    private int findClose(Account account) {
+        for (int i = 0; i < numAcct; i++) {
+            if (account.equals(accounts[i])) {
+                return i;
+            }
+        }
+        return NOT_FOUND;
+    }
+
     /**
      * Increases the size of the accounts array by 4.
      */
@@ -78,14 +88,14 @@ public class AccountDatabase {
      * @return
      */
     public boolean close(Account account) {
-        int removedAccountIndex = advancedFind(account);
+        int removedAccountIndex = findClose(account);
         if (removedAccountIndex == NOT_FOUND) return false;
 
         for (int i = removedAccountIndex; i < this.numAcct - 1; i++) {
             this.accounts[i] = this.accounts[i + 1];
         }
 
-        this.accounts[this.numAcct] = null;
+        this.accounts[this.numAcct - 1] = null;
 
         this.numAcct -= 1;
         return true;
@@ -126,7 +136,7 @@ public class AccountDatabase {
 
     private int advancedFind(Account account) {
         for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equals(account)) {
+            if (account.equals(accounts[i])) {
                 return i;
             }
         }

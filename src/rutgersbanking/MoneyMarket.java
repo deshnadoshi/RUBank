@@ -124,6 +124,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public boolean equals(Object compareMoneyMarket){
+        // if (compareMoneyMarket == null) return false;
         if (getClass() != compareMoneyMarket.getClass()){
             return false;
         }

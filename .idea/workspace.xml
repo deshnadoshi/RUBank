@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Checking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/MoneyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
@@ -47,21 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "deshna__local",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;deshna__local&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
