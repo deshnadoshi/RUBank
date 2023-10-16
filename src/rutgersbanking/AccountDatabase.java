@@ -99,7 +99,7 @@ public class AccountDatabase {
             this.accounts[i] = this.accounts[i + 1];
         }
 
-        this.accounts[this.numAcct - 1] = null;
+        this.accounts[this.numAcct -1] = null;
 
         this.numAcct -= 1;
         return true;
@@ -257,10 +257,11 @@ public class AccountDatabase {
     public boolean depositNotFound(Account account) {
         int depositToAccount = findClose(account);
         if (depositToAccount == NOT_FOUND) {
-            return false;
+            return true;
+
         }
 
-        return true;
+        return false;
     }
 
     public boolean checkInsufficientFund(Account account, double withdrawBalance){
