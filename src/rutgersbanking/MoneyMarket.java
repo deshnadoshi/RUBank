@@ -90,7 +90,11 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double calcInterest() {
-        return super.calcInterest();
+        if (checkLoyalty()) {
+            return (LOYAL_INTEREST_RATE / MONTHS) * balance;
+        } else {
+            return (INTEREST_RATE / MONTHS) * balance;
+        }
     }
 
     /**
@@ -99,7 +103,16 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public int calcFee() {
-        return super.calcFee();
+        if (checkApplyFee()){
+            if(withdrawal > 3 && balance < 2000){
+                return FEE + EXCEED_WITHDRAWAL_FEE;
+            } else if (withdrawal > 3){
+                return EXCEED_WITHDRAWAL_FEE;
+            } else {
+                return FEE;
+            }
+        }
+        return 0;
     }
 
     /**
@@ -115,6 +128,7 @@ public class MoneyMarket extends Savings {
      * Determines if a customer is loyal based on their account balance.
      * @return true if the account holder is loyal, false otherwise.
      */
+    @Override
     public boolean checkLoyalty(){
         if (balance >= MIN_BALANCE){
             isLoyal = true;
@@ -181,10 +195,10 @@ public class MoneyMarket extends Savings {
     public void updateBalance() {
         double monthlyInterest = 0;
         if (isLoyal) {
-            monthlyInterest = (balance * LOYAL_INTEREST_RATE) / MONTHS;
+            monthlyInterest = (LOYAL_INTEREST_RATE / MONTHS) * balance;
             balance += monthlyInterest; // add the interest to the balance
         } else {
-            monthlyInterest = (balance * INTEREST_RATE) / MONTHS;
+            monthlyInterest = (INTEREST_RATE / MONTHS) * balance;
             balance += monthlyInterest; // add the interest to the balance
         }
         if (checkApplyFee()){
@@ -229,5 +243,8 @@ public class MoneyMarket extends Savings {
     }
 
 
+    public int getWithdrawal(){
+        return withdrawal;
+    }
 
 }
