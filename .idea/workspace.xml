@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="TM comments">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/AccountDatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/DateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/DateTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,21 +66,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;deshna__local&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "deshna__local",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -162,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RunProject2" />
         <item itemvalue="JUnit.DateTest" />
-        <item itemvalue="Application.Checking" />
-        <item itemvalue="JUnit.AccountDatabaseTest" />
         <item itemvalue="JUnit.AccountDatabaseTest.test_CloseExistingAccount" />
+        <item itemvalue="JUnit.AccountDatabaseTest" />
+        <item itemvalue="Application.RunProject2" />
+        <item itemvalue="Application.Checking" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697505524668</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="TM comments">
+      <option name="closed" value="true" />
+      <created>1697512506167</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1697512506178</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -363,6 +373,7 @@
     <MESSAGE value="Minimal errors in output" />
     <MESSAGE value="Fixed extra 30c in interest" />
     <MESSAGE value="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/" />
+    <MESSAGE value="TM comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="TM comments" />
   </component>
 </project>

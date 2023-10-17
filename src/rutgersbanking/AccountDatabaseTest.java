@@ -2,6 +2,10 @@ package rutgersbanking;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * JUnit Test Class for AccountDatabase.java, close() method
+ * @author Deshna Doshi, Haejin Song
+ */
 public class AccountDatabaseTest {
 
     /**
