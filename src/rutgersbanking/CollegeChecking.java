@@ -11,6 +11,7 @@ public class CollegeChecking extends Checking {
 
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 0; // No monthly fee for CollegeChecking
+    private static final int MONTHS = 12;
     private static final int MIN_AGE = 16;
     private static final int MAX_AGE = 24;
 
@@ -75,7 +76,8 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public void updateBalance() {
-        super.updateBalance();
+        double monthlyInterest = (balance * INTEREST_RATE) / MONTHS;
+        balance += monthlyInterest; // add the interest to the balance
     }
 
     /**
@@ -126,7 +128,8 @@ public class CollegeChecking extends Checking {
     @Override
     public boolean equals(Object compareCollegeChecking){
         // if (compareChecking == null) return false;
-        if (getClass() != compareCollegeChecking.getClass()){
+        //Class compareCollegeCheckingClass = compareCollegeChecking.getClass();
+        if (!CollegeChecking.class.equals(compareCollegeChecking.getClass()) && !Checking.class.equals(compareCollegeChecking.getClass())){
             return false;
         }
 
@@ -136,10 +139,10 @@ public class CollegeChecking extends Checking {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (collchecking.getHolder().getFname().equals(this.holder.getFname())){
+        if (collchecking.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (collchecking.getHolder().getLname().equals(this.holder.getLname())){
+        if (collchecking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
             lnameMatch = true;
         }
         if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){

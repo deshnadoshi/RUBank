@@ -66,6 +66,14 @@ public class MoneyMarket extends Savings {
         } else return !(balance <= INVALID_BALANCE);
     }
 
+    public void addWithdrawal() {
+        this.withdrawal += 1;
+    }
+
+    public void resetWithdrawal() {
+        this.withdrawal = 0;
+    }
+
     /**
      * Determine if the number of withdrawals will lead to a fee being deducted.
      * If yes, deduct the fee. Otherwise, do nothing.
@@ -125,7 +133,7 @@ public class MoneyMarket extends Savings {
     @Override
     public boolean equals(Object compareMoneyMarket){
         // if (compareMoneyMarket == null) return false;
-        if (getClass() != compareMoneyMarket.getClass()){
+        if (!MoneyMarket.class.equals(compareMoneyMarket.getClass())) {
             return false;
         }
 
@@ -135,10 +143,10 @@ public class MoneyMarket extends Savings {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (moneymarket.getHolder().getFname().toLowerCase().equals(this.holder.getFname().toLowerCase())){
+        if (moneymarket.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (moneymarket.getHolder().getLname().toLowerCase().equals(holder.getLname().toLowerCase())){
+        if (moneymarket.getHolder().getLname().equalsIgnoreCase(holder.getLname())){
             lnameMatch = true;
         }
         if (moneymarket.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){

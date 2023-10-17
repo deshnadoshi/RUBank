@@ -240,7 +240,7 @@ public class TransactionManager {
         return null;
     }
 
-    private void depositAccount(String [] command, AccountDatabase database){
+    private void depositAccount(String[] command, AccountDatabase database){
         if (checkDepositProperBalance(command[5])) {
             Account temp = makeDepAccount(command);
             if (!database.depositNotFound(temp)) {
@@ -294,15 +294,22 @@ public class TransactionManager {
     private void withdrawAccount(String [] command, AccountDatabase database){
         if (checkWithdrawProperBalance(command[5])) {
             Account temp = makeWithdrawAccount(command);
-            if (database.checkInsufficientFund(temp, Double.parseDouble(command[5]))) {
+            //if (database.checkInsufficientFund(temp, Double.parseDouble(command[5]))) {
+            if (database.contains(temp)) {
                 if (database.withdraw(temp)) {
                     System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
                             " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Withdraw - balance updated.");
                 } else {
                     System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
-                            " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
+                            " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " Withdraw - insufficient fund.");
                 }
+            } else {
+                System.out.println(temp.getHolder().getFname() + " " + temp.getHolder().getLname() +
+                        " " + temp.getHolder().getDOB() + "(" + command[1].toUpperCase() + ")" + " is not in the database.");
+
             }
+
+
         }
     }
 

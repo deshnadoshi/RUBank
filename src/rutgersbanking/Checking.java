@@ -110,7 +110,8 @@ public class Checking extends Account {
     @Override
     public boolean equals(Object compareChecking){
         // if (compareChecking == null) return false;
-        if (getClass() != compareChecking.getClass()){
+        Class compareCheckingClass = compareChecking.getClass();
+        if (!CollegeChecking.class.equals(compareChecking.getClass()) && !Checking.class.equals(compareChecking.getClass())) {
             return false;
         }
 
@@ -120,10 +121,10 @@ public class Checking extends Account {
         boolean lnameMatch = false;
         boolean dobMatch = false;
 
-        if (checking.getHolder().getFname().equals(this.holder.getFname())){
+        if (checking.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
             fnameMatch = true;
         }
-        if (checking.getHolder().getLname().equals(this.holder.getLname())){
+        if (checking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
             lnameMatch = true;
         }
         if (checking.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
