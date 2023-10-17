@@ -56,7 +56,7 @@ public class Savings extends Account {
      */
     @Override
     public boolean checkAge() {
-        if(holder.age() >= MIN_AGE){
+        if(holder.age() >= MIN_AGE) {
             return true;
         }
         return false;
@@ -68,7 +68,7 @@ public class Savings extends Account {
      */
     @Override
     public boolean balanceIsValid() {
-        if (balance <= INVALID_BALANCE){
+        if (balance <= INVALID_BALANCE) {
             return false;
         }
 
@@ -117,6 +117,10 @@ public class Savings extends Account {
         }
     }
 
+    /**
+     * Checks if the account is loyal
+     * @return true if the account is loyal, false otherwise
+     */
     public boolean checkLoyalty(){
         if (balance >= MIN_BALANCE){
             isLoyal = true;
@@ -170,6 +174,12 @@ public class Savings extends Account {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    /**
+     * Determines if two accounts are equivalent/of the same type
+     * Same as equals()
+     * @param compareSavings the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
+     */
     public boolean equalsAdvanced(Object compareSavings) {
         // if (compareSavings == null) return false;
         if (!Savings.class.equals(compareSavings.getClass())){
