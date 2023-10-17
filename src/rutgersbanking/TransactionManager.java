@@ -253,7 +253,7 @@ public class TransactionManager {
         }
     }
 
-    private Account makeWithdrawAccount(String[] commandArg) {
+    private Account makeWithdrawAccount(String[] commandArg, AccountDatabase db) {
         switch (commandArg[ACCT_TYPE_INDEX]) {
             case "C" -> {
                 madeDepAccount = true;
@@ -261,7 +261,6 @@ public class TransactionManager {
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
                 return new Checking(newProfile, Double.parseDouble(commandArg[5]));
-
             }
             case "CC" -> {
                 madeDepAccount = true;
@@ -269,7 +268,6 @@ public class TransactionManager {
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
                 return new CollegeChecking(newProfile, Double.parseDouble(commandArg[5]), Campus.CAMDEN);
-
             }
             case "S" -> {
                 madeDepAccount = true;
@@ -277,15 +275,15 @@ public class TransactionManager {
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
                 return new Savings(newProfile, Double.parseDouble(commandArg[5]), true);
-
             }
             case "MM" -> {
                 madeDepAccount = true;
                 String[] parsedBday = commandArg[4].split("/");
                 Date birthday = new Date(Integer.parseInt(parsedBday[2]), Integer.parseInt(parsedBday[0]), Integer.parseInt(parsedBday[1]));
                 Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                return new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
-
+                Account moneyMarket = new MoneyMarket(newProfile, Double.parseDouble(commandArg[5]), true, 0);
+                db.updateWithdraws(moneyMarket);
+                return moneyMarket;
             }
         } madeAccount = false;
         return null;
@@ -293,7 +291,7 @@ public class TransactionManager {
 
     private void withdrawAccount(String [] command, AccountDatabase database){
         if (checkWithdrawProperBalance(command[5])) {
-            Account temp = makeWithdrawAccount(command);
+            Account temp = makeWithdrawAccount(command, database);
             //if (database.checkInsufficientFund(temp, Double.parseDouble(command[5]))) {
             if (database.contains(temp)) {
                 if (database.withdraw(temp)) {

@@ -82,10 +82,10 @@ public class Savings extends Account {
     public void updateBalance() {
         double monthlyInterest = 0;
         if (isLoyal) {
-            monthlyInterest = (balance * LOYAL_INTEREST_RATE) / MONTHS;
+            monthlyInterest = (LOYAL_INTEREST_RATE / MONTHS) * balance;
             balance += monthlyInterest; // add the interest to the balance
         } else {
-            monthlyInterest = (balance * INTEREST_RATE) / MONTHS;
+            monthlyInterest = (INTEREST_RATE / MONTHS) * balance;
             balance += monthlyInterest; // add the interest to the balance
         }
         if (checkApplyFee()){
@@ -110,7 +110,11 @@ public class Savings extends Account {
      * @return the monthly interest.
      */
     public double calcInterest() {
-        return (balance * INTEREST_RATE) / MONTHS;
+        if (isLoyal) {
+            return (LOYAL_INTEREST_RATE / MONTHS) * balance;
+        } else {
+            return (INTEREST_RATE / MONTHS) * balance;
+        }
     }
 
     /**
