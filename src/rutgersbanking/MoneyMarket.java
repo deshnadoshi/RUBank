@@ -90,7 +90,7 @@ public class MoneyMarket extends Savings {
      */
     @Override
     public double calcInterest() {
-        if (isLoyal) {
+        if (checkLoyalty()) {
             return (LOYAL_INTEREST_RATE / MONTHS) * balance;
         } else {
             return (INTEREST_RATE / MONTHS) * balance;
@@ -128,6 +128,7 @@ public class MoneyMarket extends Savings {
      * Determines if a customer is loyal based on their account balance.
      * @return true if the account holder is loyal, false otherwise.
      */
+    @Override
     public boolean checkLoyalty(){
         if (balance >= MIN_BALANCE){
             isLoyal = true;

@@ -110,10 +110,20 @@ public class Savings extends Account {
      * @return the monthly interest.
      */
     public double calcInterest() {
-        if (isLoyal) {
+        if (checkLoyalty()) {
             return (LOYAL_INTEREST_RATE / MONTHS) * balance;
         } else {
             return (INTEREST_RATE / MONTHS) * balance;
+        }
+    }
+
+    public boolean checkLoyalty(){
+        if (balance >= MIN_BALANCE){
+            isLoyal = true;
+            return true;
+        } else {
+            isLoyal = false;
+            return false;
         }
     }
 
