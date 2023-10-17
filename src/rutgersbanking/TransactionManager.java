@@ -185,7 +185,7 @@ public class TransactionManager {
                 madeAccount = true;
                 if (checkDate(birthday, "S")) {
                     Profile newProfile = new Profile(commandArg[2], commandArg[3], birthday);
-                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), commandArg[6].equals("1"));
+                    return new Savings(newProfile, Double.parseDouble(commandArg[5]), !commandArg[6].equals("0"));
                 }
             } case "MM" -> {
                 if (Double.parseDouble(commandArg[5]) < 2000) {
