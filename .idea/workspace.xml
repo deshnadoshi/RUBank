@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Fixed extra 30c in interest">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -324,8 +323,27 @@
       <option name="project" value="LOCAL" />
       <updated>1697504289361</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/">
+      <option name="closed" value="true" />
+      <created>1697505524668</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1697505524668</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RUBank Set-up" />
@@ -344,6 +362,7 @@
     <MESSAGE value="sort of fixed deposit" />
     <MESSAGE value="Minimal errors in output" />
     <MESSAGE value="Fixed extra 30c in interest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed extra 30c in interest" />
+    <MESSAGE value="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/" />
+    <option name="LAST_COMMIT_MESSAGE" value="Complete Fix of Fees/Balance/IsLoyal&#10;Remaning Issues:Deposit/JaneDoe ordering/RoyBrooks withdrawals/" />
   </component>
 </project>
