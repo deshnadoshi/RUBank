@@ -1,5 +1,9 @@
 package rutgersbanking;
 
+/**
+ * Defines a linear data structure using an array to hold a list of accounts with different types.
+ * @author Deshna Doshi, Haejin Song
+ */
 public class AccountDatabase {
     private static final int GROWTH_CAPACITY = 4;
     private Account [] accounts; // list of various types of accounts
@@ -18,9 +22,8 @@ public class AccountDatabase {
     }
 
     /**
-     *
-     * @param account
-     * @return
+     * @param account Account that is being searched for
+     * @return index of account if found, else NOT_FOUND
      */
     private int find(Account account) {
         if (account == null){
@@ -34,19 +37,6 @@ public class AccountDatabase {
         return NOT_FOUND;
     } // this will consider CC and C as the same account, S amd MM are considered different
     // for use in contains () to check if an account alr exists
-
-
-    private int findClose(Account account) {
-        if (account == null){
-            return NOT_FOUND;
-        }
-        for (int i = 0; i < numAcct; i++) {
-            if (account.compareTo(accounts[i]) == 0) {
-                return i;
-            }
-        }
-        return NOT_FOUND;
-    }
 
     /**
      * Increases the size of the accounts array by 4.
@@ -82,14 +72,12 @@ public class AccountDatabase {
             this.numAcct += 1;
             return true;
         }
-
         return false;
     } //add a new account
 
     /**
-     *
-     * @param account
-     * @return
+     * @param account Account that is being removed from the database
+     * @return true if successfully closed, false otherwise
      */
     public boolean close(Account account) {
         int removedAccountIndex = findUniqueIndex(account);
@@ -106,13 +94,11 @@ public class AccountDatabase {
     }
 
     /**
-     *
-     * @param account
-     * @return
+     * @param account Account that is being withdrawn from
+     * @return true if successfully withdrawn from, false otherwise
      */
     public boolean withdraw(Account account) {
         int withdrawFromAccount = findUniqueIndex(account);
-        //if (withdrawFromAccount == NOT_FOUND) return false; // if account doesn't exist you can't withdraw
         // account.balance is the amount to withdraw
         // need check if account.balance is > the real account's current balance
         if (account.getBalance() <= accounts[withdrawFromAccount].getBalance()){
@@ -120,14 +106,12 @@ public class AccountDatabase {
             // reduce the withdrawn amount from the real account's current balance
             return true;
         }
-
         // false if insufficient fund
         return false;
     }
 
     /**
-     *
-     * @param account
+     * @param account Account that money is being deposited in
      */
     public void deposit(Account account) {
         int depositToAccount = advancedFind(account);
@@ -137,9 +121,15 @@ public class AccountDatabase {
         // account.getBalance() contains the amount to deposit
         // Will need to create a "shell" account to hold just the deposit amount, to populate it into the actual account
         accounts[depositToAccount].balance += account.getBalance();
-
     }
 
+    /**
+     * @param account Account that is being searched for
+     * @return index of account if found, else NOT_FOUND
+     * Note: This is different from find because it makes sure that the difference
+     * between a CC and C is accounted for when looking for accounts. This is necessary
+     * for methods like deposit().
+     */
     private int advancedFind(Account account) {
         for (int i = 0; i < numAcct; i++) {
             if (account.equalsAdvanced(accounts[i])) {
@@ -147,18 +137,12 @@ public class AccountDatabase {
             }
         }
         return NOT_FOUND;
-    } // this considers C and CC as separate account, S and MM are different
-    // to be used in deposit, withdraw, close account
-
-    /*
-    public void print() {
-        if (numAcct == 0) System.out.println("Account Database is empty!");
-        Account[] sortedArray = arrayForSorting(accounts);
-        for (int i = 0; i < numAcct; i++) {
-            System.out.println(sortedArray[i]);
-        }
     }
-*/
+
+    /**
+     * Prints out accounts sorted by account types, then last name,
+     * then first name, then DOB.
+     */
     public void printSorted() {
         if (numAcct == 0) System.out.println("Account Database is empty!");
         else {
@@ -170,9 +154,12 @@ public class AccountDatabase {
             }
             System.out.println("*end of list.\n");
         }
+    }
 
-    } //sort by account type and profile
-
+    /**
+     * Prints out accounts sorted by account type, and displays calculated
+     * fees and monthly interest based on current account balances.
+     */
     public void printFeesAndInterests() {
         if (numAcct == 0) System.out.println("Account Database is empty!");
         else {
@@ -184,8 +171,13 @@ public class AccountDatabase {
             }
             System.out.println("*end of list.\n");
         }
-    } //calculate interests/fees
+    }
 
+    /**
+     * Prints out accounts sorted by account type, and updates account balances
+     * by adding fees and interest. Also resets withdrawals for MM.
+     * Acts like one month has passed.
+     */
     public void printUpdatedBalances() {
         if (numAcct == 0) System.out.println("Account Database is empty!");
         else {
@@ -201,8 +193,12 @@ public class AccountDatabase {
             }
             System.out.println("*end of list.\n");
         }
-    } //apply the interests/fees (1 month passes)
+    }
 
+    /**
+     * @param accountsArray Account that nulls are being removed from
+     * @return an array with no nulls
+     */
     public Account[] arrayForSorting(Account[] accountsArray) {
         Account[] temp = new Account[numAcct];
         for (int i = 0; i < numAcct; i++) {
@@ -226,6 +222,12 @@ public class AccountDatabase {
         quickSort(unsortedArray, pivot + 1, high);
     }
 
+    /**
+     * @param unsortedArray Account that is being sorted
+     * @param low Value of lowest index
+     * @param high Value of highest index
+     * @return current pivot
+     */
     private int partition(Account[] unsortedArray, int low, int high) {
         Account pivot = unsortedArray[high];
         int temp_pivot = low - 1;
@@ -255,12 +257,19 @@ public class AccountDatabase {
         return temp_pivot;
     }
 
+    /**
+     * Swap i and j with each other in the array
+     */
     private void swap(int i, int j, Account[] A) {
         Account temp = A[i];
         A[i] = A[j];
         A[j] = temp;
     }
 
+    /**
+     * @param account Account that is being searched for
+     * @return true if found, otherwise false
+     */
     public boolean depositNotFound(Account account) {
         int depositToAccount = advancedFind(account);
         if (depositToAccount == NOT_FOUND) {
@@ -270,16 +279,10 @@ public class AccountDatabase {
         return false;
     }
 
-    public boolean checkInsufficientFund(Account account, double withdrawBalance){
-        if (withdrawBalance > account.getBalance()){
-            return true; // you have insufficient funds
-        }
-
-        // false if you don't have insufficient fund
-        return false;
-
-    }
-
+    /**
+     * @param account Account that is being searched for
+     * @return index of account if found, else NOT_FOUND
+     */
     public int findUniqueIndex(Account account){
         for (int i = 0; i < numAcct; i++) {
             if(accounts[i].getClass().toString().equals(account.getClass().toString())){
@@ -292,6 +295,9 @@ public class AccountDatabase {
 
     }
 
+    /**
+     * @param mm Account that will have withdraws updated
+     */
     public void updateWithdraws(Account mm){
         int mmInd = find(mm); // found index of mm in db
 
