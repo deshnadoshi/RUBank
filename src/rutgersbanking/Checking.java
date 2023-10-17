@@ -134,9 +134,13 @@ public class Checking extends Account {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    /**
+     * Determines if two accounts are equivalent/of the same type
+     * Makes sure to check that C and CC are not the same type of account..
+     * @param compareChecking the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
+     */
     public boolean equalsAdvanced(Object compareChecking){
-        // if (compareChecking == null) return false;
-        Class compareCheckingClass = compareChecking.getClass();
         if (!Checking.class.equals(compareChecking.getClass())) {
             return false;
         }
@@ -163,7 +167,8 @@ public class Checking extends Account {
     /**
      * Determines if two accounts have the same holder information.
      * @param checking the account to be compared.
-     * @return true if the holder information of any two accounts is the same, false otherwise.
+     * @return -2 if the account is null, -1 if checking is less than holder,
+     * 0 if checking is equal to holder, and 1 if checking is greater than holder.
      */
     @Override
     public int compareTo(Account checking) {

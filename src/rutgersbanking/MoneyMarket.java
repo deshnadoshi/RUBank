@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
  */
 public class MoneyMarket extends Savings {
     private int withdrawal; //number of withdrawals
-
     private static final double INTEREST_RATE = 0.045;
     private static final int FEE = 25;
     private static final int MIN_AGE = 16;
@@ -66,10 +65,16 @@ public class MoneyMarket extends Savings {
         } else return !(balance <= INVALID_BALANCE);
     }
 
+    /**
+     * Adds one to the amount of withdrawals.
+     */
     public void addWithdrawal() {
         this.withdrawal += 1;
     }
 
+    /**
+     * Resets the amount of withdrawals to zero.
+     */
     public void resetWithdrawal() {
         this.withdrawal = 0;
     }
@@ -104,9 +109,9 @@ public class MoneyMarket extends Savings {
     @Override
     public int calcFee() {
         if (checkApplyFee()){
-            if(withdrawal > 3 && balance < 2000){
+            if(withdrawal > MAX_WITHDRAWAL && balance < MIN_BALANCE){
                 return FEE + EXCEED_WITHDRAWAL_FEE;
-            } else if (withdrawal > 3){
+            } else if (withdrawal > MAX_WITHDRAWAL){
                 return EXCEED_WITHDRAWAL_FEE;
             } else {
                 return FEE;
@@ -170,6 +175,12 @@ public class MoneyMarket extends Savings {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    /**
+     * Determines if two accounts are equivalent/of the same type
+     * Same as equals()
+     * @param compareMoneyMarket the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
+     */
     public boolean equalsAdvanced(Object compareMoneyMarket) {
         if (!MoneyMarket.class.equals(compareMoneyMarket.getClass())) {
             return false;

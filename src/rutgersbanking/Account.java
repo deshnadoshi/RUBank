@@ -85,6 +85,12 @@ public abstract class Account implements Comparable <Account>{
     @Override
     public abstract boolean equals(Object account);
 
+    /**
+     * Abstract method to be implemented in subclasses; determines if two accounts have the same holder and are the same type.
+     * It differs from equals() because it checks to make sure there is a difference between C and CC.
+     * @param account the Account object that is being checked.
+     * @return true if two accounts are equivalent, false otherwise.
+     */
     public abstract boolean equalsAdvanced(Object account);
 
     /**

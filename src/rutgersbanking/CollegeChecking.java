@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 
 public class CollegeChecking extends Checking {
     private Campus campus;
-
+    private static final int EQUAL_COMPARATOR = 0;
     private static final double INTEREST_RATE = 0.01;
     private static final int FEE = 0; // No monthly fee for CollegeChecking
     private static final int MONTHS = 12;
@@ -145,13 +145,19 @@ public class CollegeChecking extends Checking {
         if (collchecking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
             lnameMatch = true;
         }
-        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){
+        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
             dobMatch = true;
         }
 
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    /**
+     * Determines if two accounts are equivalent/of the same type
+     * Makes sure to check that C and CC are not the same type of account..
+     * @param compareCollegeChecking the object being compared.
+     * @return true if the accounts are equivalent, false otherwise.
+     */
     public boolean equalsAdvanced(Object compareCollegeChecking) {
         if (!CollegeChecking.class.equals(compareCollegeChecking.getClass())){
             return false;
@@ -169,7 +175,7 @@ public class CollegeChecking extends Checking {
         if (collchecking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
             lnameMatch = true;
         }
-        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){
+        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
             dobMatch = true;
         }
 
