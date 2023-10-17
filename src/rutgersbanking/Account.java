@@ -85,6 +85,8 @@ public abstract class Account implements Comparable <Account>{
     @Override
     public abstract boolean equals(Object account);
 
+    public abstract boolean equalsAdvanced(Object account);
+
     /**
      * Getter for the balance instance variable.
      * @return the balance.

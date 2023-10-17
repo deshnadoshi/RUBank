@@ -170,6 +170,30 @@ public class Savings extends Account {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    public boolean equalsAdvanced(Object compareSavings) {
+        // if (compareSavings == null) return false;
+        if (!Savings.class.equals(compareSavings.getClass())){
+            return false;
+        }
+        Account savings = (Savings) compareSavings; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (savings.getHolder().getFname().equalsIgnoreCase(holder.getFname())){
+            fnameMatch = true;
+        }
+        if (savings.getHolder().getLname().equalsIgnoreCase(holder.getLname())){
+            lnameMatch = true;
+        }
+        if (savings.getHolder().getDOB().compareTo(holder.getDOB()) == EQUAL_COMPARATOR){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
     /**
      * Determines if two accounts have the same holder information.
      * @param savings the account to be compared.

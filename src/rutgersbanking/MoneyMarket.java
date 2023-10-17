@@ -170,6 +170,30 @@ public class MoneyMarket extends Savings {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    public boolean equalsAdvanced(Object compareMoneyMarket) {
+        if (!MoneyMarket.class.equals(compareMoneyMarket.getClass())) {
+            return false;
+        }
+
+        Account moneymarket = (Savings) compareMoneyMarket; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (moneymarket.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
+            fnameMatch = true;
+        }
+        if (moneymarket.getHolder().getLname().equalsIgnoreCase(holder.getLname())){
+            lnameMatch = true;
+        }
+        if (moneymarket.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
     /**
      * Determines if two accounts have the same holder information.
      * @param savings the account to be compared.
