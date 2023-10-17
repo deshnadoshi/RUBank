@@ -133,7 +133,7 @@ public class AccountDatabase {
      * @param account
      */
     public void deposit(Account account) {
-        int depositToAccount = findUniqueIndex(account);
+        int depositToAccount = advancedFind(account);
         if (depositToAccount == NOT_FOUND){
             return;
         }
@@ -145,7 +145,7 @@ public class AccountDatabase {
 
     private int advancedFind(Account account) {
         for (int i = 0; i < numAcct; i++) {
-            if (account.equals(accounts[i])) {
+            if (account.equalsAdvanced(accounts[i])) {
                 return i;
             }
         }
@@ -269,11 +269,11 @@ public class AccountDatabase {
     }
 
     public boolean depositNotFound(Account account) {
-        int depositToAccount = find(account);
+        int depositToAccount = advancedFind(account);
         if (depositToAccount == NOT_FOUND) {
             return true;
         }
-        deposit(account);
+        //deposit(account);
         return false;
     }
 

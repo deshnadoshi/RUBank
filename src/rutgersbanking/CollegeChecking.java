@@ -152,4 +152,28 @@ public class CollegeChecking extends Checking {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    public boolean equalsAdvanced(Object compareCollegeChecking) {
+        if (!CollegeChecking.class.equals(compareCollegeChecking.getClass())){
+            return false;
+        }
+
+        Account collchecking = (Account) compareCollegeChecking; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (collchecking.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
+            fnameMatch = true;
+        }
+        if (collchecking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
+            lnameMatch = true;
+        }
+        if (collchecking.getHolder().getDOB().compareTo(this.holder.getDOB()) == 0){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
 }

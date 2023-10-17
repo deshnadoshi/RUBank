@@ -134,6 +134,32 @@ public class Checking extends Account {
         return (fnameMatch && lnameMatch && dobMatch);
     }
 
+    public boolean equalsAdvanced(Object compareChecking){
+        // if (compareChecking == null) return false;
+        Class compareCheckingClass = compareChecking.getClass();
+        if (!Checking.class.equals(compareChecking.getClass())) {
+            return false;
+        }
+
+        Account checking = (Account) compareChecking; // type cast to use in equals
+
+        boolean fnameMatch = false;
+        boolean lnameMatch = false;
+        boolean dobMatch = false;
+
+        if (checking.getHolder().getFname().equalsIgnoreCase(this.holder.getFname())){
+            fnameMatch = true;
+        }
+        if (checking.getHolder().getLname().equalsIgnoreCase(this.holder.getLname())){
+            lnameMatch = true;
+        }
+        if (checking.getHolder().getDOB().compareTo(this.holder.getDOB()) == EQUAL_COMPARATOR){
+            dobMatch = true;
+        }
+
+        return (fnameMatch && lnameMatch && dobMatch);
+    }
+
     /**
      * Determines if two accounts have the same holder information.
      * @param checking the account to be compared.
