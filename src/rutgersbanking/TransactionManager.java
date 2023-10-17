@@ -62,12 +62,10 @@ public class TransactionManager {
                 } else if (parsedCommand[counter].equals("D")) {
                     if (checkNoArgs(parsedCommand)) {
                         depositAccount(parsedCommand, database);
-                        // database.deposit(makeAccount(parsedCommand));
                         counter += 6;
                     } else counter += parsedCommand.length;
                 } else if (parsedCommand[counter].equals("W")) {
                     if (checkNoArgs(parsedCommand)) {
-                        // database.withdraw(makeAccount(parsedCommand));
                         withdrawAccount(parsedCommand, database);
                         counter += 6;
                     } else counter += parsedCommand.length;

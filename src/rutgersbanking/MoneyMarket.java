@@ -204,7 +204,6 @@ public class MoneyMarket extends Savings {
         int profileCompare = savings.getHolder().compareTo(this.holder);
         boolean typeCompare = savings.getClass().equals(this.getClass());
         // makes sure that a MM doesn't get confused for a savings, if they have the same profile info
-
         if (profileCompare == EQUAL_COMPARATOR && typeCompare){
             return EQUAL_COMPARATOR;
         }
@@ -226,7 +225,8 @@ public class MoneyMarket extends Savings {
             balance += monthlyInterest; // add the interest to the balance
         }
         if (checkApplyFee()){
-            balance -= FEE;
+            int fee = calcFee();
+            balance -= fee;
         }
     }
 

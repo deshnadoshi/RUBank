@@ -117,9 +117,6 @@ public class AccountDatabase {
         // need check if account.balance is > the real account's current balance
         if (account.getBalance() <= accounts[withdrawFromAccount].getBalance()){
             accounts[withdrawFromAccount].balance -= account.getBalance();
-            if (account.getClass().equals(MoneyMarket.class)) {
-                ((MoneyMarket) account).addWithdrawal();
-            }
             // reduce the withdrawn amount from the real account's current balance
             return true;
         }
@@ -197,10 +194,10 @@ public class AccountDatabase {
             System.out.println("\n*list of accounts with fees and interests applied.");
             for (int i = 0; i < numAcct; i++) {
                 sortedArray[i].updateBalance();
-                System.out.println(sortedArray[i]);
                 if (sortedArray[i].getClass().equals(MoneyMarket.class)) {
                     ((MoneyMarket) sortedArray[i]).resetWithdrawal();
                 }
+                System.out.println(sortedArray[i]);
             }
             System.out.println("*end of list.\n");
         }
@@ -238,10 +235,6 @@ public class AccountDatabase {
                 swap(i, temp_pivot, unsortedArray);
             } else if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0 &&
                     unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) < 0) {
-                temp_pivot += 1;
-                swap(i, temp_pivot, unsortedArray);
-            } else if (unsortedArray[i].getHolder().getLname().compareTo(pivot.getHolder().getLname()) == 0 &&
-                    unsortedArray[i].getHolder().getFname().compareTo(pivot.getHolder().getFname()) < 0) {
                 temp_pivot += 1;
                 swap(i, temp_pivot, unsortedArray);
             } else if (unsortedArray[i].getClass().toString().compareTo(pivot.getClass().toString()) == 0 &&
