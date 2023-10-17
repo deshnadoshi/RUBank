@@ -2,7 +2,7 @@ package rutgersbanking;
 import static org.junit.Assert.*;
 
 /**
- * JUnit Test class for Date.java.
+ * JUnit Test Class for Date.java, isValid() method
  * @author Deshna Doshi, Haejin Song
  */
 
