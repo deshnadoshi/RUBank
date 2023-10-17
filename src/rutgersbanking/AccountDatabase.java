@@ -298,4 +298,15 @@ public class AccountDatabase {
         return NOT_FOUND;
 
     }
+
+    public void updateWithdraws(Account mm){
+        int mmInd = find(mm); // found index of mm in db
+
+        if (mmInd != -1){ // if it is found
+            Account updateAcc = accounts[mmInd]; // get the account object
+            MoneyMarket updateMM = (MoneyMarket) updateAcc; // turn into mm object so u can add withdrawal amt
+            updateMM.addWithdrawal();
+        }
+    }
+
 }

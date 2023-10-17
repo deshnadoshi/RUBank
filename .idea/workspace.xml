@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="sort of fixed deposit">
+    <list default="true" id="8fa7bbe2-0cae-4418-ade3-4e41256a373a" name="Changes" comment="Fixed extra 30c in interest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/DateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/DateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/Savings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rutgersbanking/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +88,7 @@
       <recent name="rutgersbanking" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DateTest">
+  <component name="RunManager" selected="Application.RunProject2">
     <configuration name="Checking" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="rutgersbanking.Checking" />
       <module name="RUBank" />
@@ -162,8 +163,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DateTest" />
         <item itemvalue="Application.RunProject2" />
+        <item itemvalue="JUnit.DateTest" />
         <item itemvalue="Application.Checking" />
         <item itemvalue="JUnit.AccountDatabaseTest" />
         <item itemvalue="JUnit.AccountDatabaseTest.test_CloseExistingAccount" />
@@ -307,7 +308,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697483155330</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Minimal errors in output">
+      <option name="closed" value="true" />
+      <created>1697503663569</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1697503663569</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed extra 30c in interest">
+      <option name="closed" value="true" />
+      <created>1697504289361</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1697504289361</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -325,6 +342,8 @@
     <MESSAGE value="issues with open/close?" />
     <MESSAGE value="issues with open/close(x2)" />
     <MESSAGE value="sort of fixed deposit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort of fixed deposit" />
+    <MESSAGE value="Minimal errors in output" />
+    <MESSAGE value="Fixed extra 30c in interest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed extra 30c in interest" />
   </component>
 </project>

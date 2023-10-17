@@ -86,7 +86,7 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public double calcInterest() {
-        return super.calcInterest();
+        return balance * (INTEREST_RATE / MONTHS);
     }
 
     /**

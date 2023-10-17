@@ -79,7 +79,7 @@ public class Checking extends Account {
      */
     @Override
     public double calcInterest() {
-        return (balance * INTEREST_RATE) / MONTHS;
+        return balance * (INTEREST_RATE / MONTHS);
     }
 
     /**
